@@ -1,0 +1,131 @@
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.gallery {
+  flex: 1;
+  min-width: 300px;
+}
+
+.main-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.thumbnails img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+
+.thumbnails img.active,
+.thumbnails img:hover {
+  border-color: #009688;
+}
+
+.info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #009688;
+}
+
+.stock {
+  color: #4caf50;
+}
+
+.stock.out {
+  color: #f44336;
+}
+
+.desc {
+  color: #555;
+  margin: 1rem 0;
+}
+
+.rating {
+  color: #fbc02d;
+}
+
+.quantity {
+  margin-top: 1rem;
+}
+
+.quantity input {
+  width: 70px;
+  padding: 0.3rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background-color: #00796b;
+}
+
+.reviews-list {
+  margin-top: 20px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #fafafa;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stars span {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.stars span.filled {
+  color: gold;
+}
+
+.average-rating {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.reviews-container {
+  max-width: 1100px; 
+  margin: 0 auto;   
+  padding: 0 20px;  
+}
+

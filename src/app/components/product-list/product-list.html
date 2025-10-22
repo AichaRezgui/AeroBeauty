@@ -1,0 +1,29 @@
+<div class="product-list-container">
+  <h2 class="title">Nos Produits</h2>
+
+  <div *ngIf="isLoading" class="loading">Chargement...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div class="grid" *ngIf="!isLoading && !errorMessage">
+  <div
+    class="card"
+    *ngFor="let product of products"
+    (click)="goToDetails(product.id)"
+  >
+    <div class="image-container">
+      <img [src]="product.images[0]" [alt]="product.name" />
+      <span *ngIf="product.isNew" class="badge new">Nouveau</span>
+      <span *ngIf="product.isFeatured" class="badge featured">★</span>
+    </div>
+
+    <div class="card-content">
+      <h3>{{ product.name }}</h3>
+      <p class="price">{{ product.price | currency:'DT' }}</p>
+      <p class="rating">⭐ {{ product.rating }} / 5</p>
+      <button class="btn" (click)="addToCart($event, product)">
+        Ajouter au panier
+      </button>
+    </div>
+  </div>
+</div>
+</div>

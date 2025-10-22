@@ -1,0 +1,120 @@
+{
+  "categories": [
+    { "id": 1, "name": "Lèvres", "image": "assets/images/categories/levres.jpg" },
+    { "id": 2, "name": "Yeux", "image": "assets/images/categories/yeux.jpg" },
+    { "id": 3, "name": "Teint", "image": "assets/images/categories/font.jpg" },
+    { "id": 4, "name": "Soin de la Peau", "image": "assets/images/categories/SoindelaPeau.jpg" },
+    { "id": 5, "name": "Joues", "image": "assets/images/categories/joues.jpg" }
+  ],
+
+  "products": [
+    { "id": 1, "name": "Essence Crème Hydratante", "description": "essence La crème hydratante teintée unifie votre peau avec une couvrance légère à moyenne. En même temps, il est super léger et confortable. Cette teinte peau est la version légère du fond de teint et n'obstrue pas les pores.",
+     "price": 60.99, "categoryId": 3, "images": ["assets/images/produits/skintint1.jpg","assets/images/produits/skintint2.jpg","assets/images/produits/skintint3.jpg"], "rating": 4.5, "reviews": [1,2], "stock": 15, "isFeatured": true, "isNew": true },
+    { "id": 2, "name": "Laneige Lip Sleeping Mask", "description": "Ce masque pour les lèvres procure une hydratation intense et des antioxydants pendant que vous dormez avec un complexe de petits fruits, des graines de Murumuru et du beurre de karité.Ce masque est riche en antioxydants pour aider à révéler des lèvres lisses et souples.Huile de noix de coco, beurre de karité et beurre de graines de murumuru aident à nourrir et à fournir une hydratation durable pendant votre sommeil.Contient le Vitamine C qui Aide à protéger des agressions extérieures.",
+     "price": 50.00, "categoryId": 1, "images": ["assets/images/produits/laneige_lip_mask1.jpg","assets/images/produits/laneige_lip_mask2.jpg","assets/images/produits/laneige_lip_mask3.jpg"], "rating": 4.8, "reviews": [3], "stock": 10, "isFeatured": true, "isNew": false },
+    { "id": 3, "name": "Anua Niacinamide Dark Spot Correcting Serum 30ml", "description": "Le Anua Niacinamide 10% + TXA 4% Dark Spot Correcting Serum est un sérum puissant conçu pour réduire efficacement les taches sombres et le teint inégal. Ce sérum combine trois ingrédients clés : 10% de Niacinamide, 4% d’Acide Tranexamique (TXA) et 2% d’Arbutine, qui agissent ensemble pour atténuer l’hyperpi gmentation, les cicatrices post-acnéiques et les taches solaires.",
+     "price": 90.99, "categoryId": 4, "images": ["assets/images/produits/anua1.png","assets/images/produits/anua2.jpg","assets/images/produits/anua3.jpg"], "rating": 4.0, "reviews": [4], "stock": 50, "isFeatured": true, "isNew": true },
+    { "id": 4, "name": "Essence Fards A Paupieres Welcome To Cape Town", "description": "La palette de fards à paupières Essence Welcome To Cape Town a toutes sortes de couleurs dans l'ambiance sud-africaine pour un maquillage parfait ! Les couleurs mates et brillantes de cette palette vous permettent de créer différents looks pour les yeux avec différentes finitions. Les couleurs des fards à paupières sont très pigmentées et faciles à construire afin que vous puissiez créer le regard que vous souhaitez.",
+     "price": 45.99, "categoryId": 2, "images": ["assets/images/produits/eyeshadow1.jpg","assets/images/produits/eyeshadow2.jpg","assets/images/produits/eyeshadow3.jpg"], "rating": 4.2, "reviews": [5], "stock": 30, "isFeatured": true, "isNew": false },
+    { "id": 5, "name": "Essence Fond De Teint I Love Flawless Skin 50", "description": "Malgré sa formule légère, le fond de teint essence I LOVE FLAWLESS SKIN est entièrement opaque. Pour un fini naturel et mat. La formule tient plus longtemps, sans obstruer les pores. Elle protège également la peau avec un SPF 20.",
+     "price": 70.99, "categoryId": 3, "images": ["assets/images/produits/fontdeteint1.jpg","assets/images/produits/fontdeteint2.jpg","assets/images/produits/fontdeteint3.jpg"], "rating": 4.1, "reviews": [], "stock": 25, "isFeatured": true, "isNew": true },
+    { "id": 6, "name": "Golden Rose BB CREME GOLDEN ROSE N°04", "description": "Tout en un, une peau d'apparence instantanément parfaite! Donne à la peau un éclat sain! Avec sa texture légère et facile à appliquer, il lisse et unifie le teint et hydrate la peau pendant la journée. Cache l'apparence des imperfections cutanées. Avec SP",
+     "price": 80.99, "categoryId": 3, "images": ["assets/images/produits/bb_cream1.jpg","assets/images/produits/bb_cream1.jpg","assets/images/produits/bb_cream1.jpg"], "rating": 4.3, "reviews": [], "stock": 100, "isFeatured": false, "isNew": true },
+    { "id": 7, "name": "Flormar Lipstick Weightless Hd Orange Marmalade", "description": "Si vous recherchez un rouge à lèvres facilement applicable, crémeux et léger pour obtenir un aspect doux et mat, essayez le HD Weightless Lipstick. Avec ses couleurs étonnantes et sa formule longue durée, le HD Weightless Lipstick crée un effet impeccable sur votre maquillage tout en hydratant vos lèvres pour créer un aspect sain. Choisissez la couleur qui correspond le mieux à votre teint de la large gamme de couleurs HD Weightless Lipstick.",
+     "price": 25.00, "categoryId": 1, "images": ["assets/images/produits/lip_stick1.jpg","assets/images/produits/lip_stick2.jpg","assets/images/produits/lip_stick3.jpg"], "rating": 4.0, "reviews": [], "stock": 40, "isFeatured": false, "isNew": true },
+    { "id": 8, "name": "Vaseline Baume à lèvres Lip Therapy Rosy Lips 7g", "description": "Le baume à lèvres Rosy Lips de VASELINE est bien plus qu'un simple baume; il s'agit d'une expérience hydratante exceptionnelle pour vos lèvres. Sa formule unique, enrichie de la gelée Vaseline pure, offre une solution instantanée pour les lèvres sèches et abîmées. Cette combinaison spéciale adoucit et apaise immédiatement, laissant vos lèvres hydratées et soignées.",
+     "price": 15.00, "categoryId": 1, "images": ["assets/images/produits/vaseline1.jpg","assets/images/produits/vaseline2.jpg","assets/images/produits/vaseline3.jpg"], "rating": 4.6, "reviews": [], "stock": 20, "isFeatured": false, "isNew": false },
+    { "id": 9, "name": "REVOLUTION BEAUTY LONDON Big Lash", "description": "Sa brosse large et pointue apporte un effet woah à chaque cils ! Les petits picots attrapent les plus petits cils dès leur racine pour les recouvrir de produit. Les longs picots enrobent chaque cils de la racine à la pointe pour leur apporter volume et longueur. De plus, la formule waterproof vous assure une tenue parfaite, pour des cils extraordinaires en toute circonstance..",
+     "price": 19.99, "categoryId": 2, "images": ["assets/images/produits/big_lash1.jpg","assets/images/produits/big_lash2.jpg","assets/images/produits/big_lash3.jpg"], "rating": 4.1, "reviews": [], "stock": 60, "isFeatured": false, "isNew": false },
+    { "id": 10, "name": "Essence MASCARA LASH PRINCESS VOLUME", "description": "obtenez le traitement royal! l'applicateur de baguette unique est conçu pour un contrôle supplémentaire pour atteindre chaque cil. la brosse cobra d'inspiration prestige est spécialement conçue pour soulever, séparer et couvrir chaque cil individuel pour le volume le plus majestueux. testé opthalmologiquement.",
+     "price": 17.00, "categoryId": 2, "images": ["assets/images/produits/lash1.jpg","assets/images/produits/lash2.jpg","assets/images/produits/lash3.jpg"], "rating": 4.4, "reviews": [], "stock": 15, "isFeatured": false, "isNew": true },
+    { "id": 11, "name": "Essence Fard A Joue Liquide Baby Got Blush 40", "description": "Blush liquide : le blush essence BABY GOT BLUSH 20 Blushin Berry colore vos joues tout en leur offrant un fini naturel. Un blush dans une tonalité fruits rouges, dans un tube qui ne passe pas inaperçu. Facile à utiliser grâce à un applicateur éponge doux. Il est tout aussi facile à estomper, avec un pinceau, un beauty blender ou vos doigts. Pour une couleur intense et un résultat personnalisé, appliquez plusieurs couches.",
+     "price": 32.00, "categoryId": 5, "images": ["assets/images/produits/essence_lips1.jpg","assets/images/produits/essence_lips2.jpg","assets/images/produits/essence_lips3.jpg"], "rating": 4.0, "reviews": [], "stock": 35, "isFeatured": false, "isNew": true },
+    { "id": 12, "name": "L'Oréal Paris Oap Lumi Glass", "description": "L’Oréal Paris Lumi Le Glass Highlighter Stick est un illuminateur polyvalent, parfait pour accentuer différents traits du visage ainsi que le corps. Sa texture douce fond instantanément sur la peau, garantissant un éclat frais.",
+     "price": 69.99, "categoryId": 5, "images": ["assets/images/produits/loreal1.jpg","assets/images/produits/loreal2.jpg","assets/images/produits/loreal3.jpg"], "rating": 4.5, "reviews": [], "stock": 80, "isFeatured": false, "isNew": false },
+    { "id": 13, "name": "Essence Fard à Joues Stick Baby Got Blush", "description": "Le Essence Baby Got Blush 30 Rosé all Day est un fard à joues sous forme de stick pratique. Ce blush est facile à appliquer grâce à sa formule crémeuse et intensément pigmenté .",
+     "price": 24.99, "categoryId": 5, "images": ["assets/images/produits/blush1.jpg","assets/images/produits/blush2.jpg","assets/images/produits/blush3.jpg"], "rating": 4.7, "reviews": [], "stock": 10, "isFeatured": true, "isNew": false },
+    { "id": 14, "name": "Essence Lip Oil Hydra Kiss N 08 MOCHA GLOW", "description": "Dites adieu aux lèvres sèches et gercées, et bonjour à une perfection souple et hydratée avec l’Huile à Lèvres Hydra Kiss de essence !",
+     "price": 25.99, "categoryId": 1, "images": ["assets/images/produits/lip_oil1.jpg","assets/images/produits/lip_oil2.jpg","assets/images/produits/lip_oil3.jpg"], "rating": 4.2, "reviews": [], "stock": 8, "isFeatured": false, "isNew": true },
+    { "id": 15, "name": "Golden Rose MASCARA SMOKEY LASHES ", "description": "Un mascara qui ajoute du volume et de la plénitude aux cils grâce à la combinaison parfaite d'une formule innovante à séchage rapide et d'une brosse à fibres souples unique.",
+     "price": 39.99, "categoryId": 2, "images": ["assets/images/produits/mascara1.jpg","assets/images/produits/mascara2.jpg","assets/images/produits/mascara3.jpg"], "rating": 4.1, "reviews": [], "stock": 30, "isFeatured": false, "isNew": false },
+    { "id": 16, "name": "REVOLUTION BEAUTY LONDON Super Flick Liquid Eyeliner Black", "description": "Améliorez votre technique d'eyeliner avec les tout nouveaux Revolution Super Flick Liners !",
+     "price": 19.99, "categoryId": 2, "images": ["assets/images/produits/eyeliner1.jpg","assets/images/produits/eyeliner2.jpg","assets/images/produits/eyeliner3.jpg"], "rating": 4.3, "reviews": [], "stock": 25, "isFeatured": false, "isNew": true },
+    { "id": 17, "name": "Essence WHAT A TINT! lip & cheek tint N 03 - Peachy Vibes", "description": "Ce baume teinté permet de mettre en valeur les lèvres et les joues. Formule non collante et consistance aqueuse. Colore légèrement.",
+     "price": 29.99, "categoryId": 1, "images": ["assets/images/produits/tint1.jpg","assets/images/produits/tint2.jpg","assets/images/produits/tint3.jpg"], "rating": 4.0, "reviews": [], "stock": 40, "isFeatured": false, "isNew": true },
+    { "id": 18, "name": "Medicube PDRN Pink Hyaluronic Moisturizing Cream 50ml", "description": "La Medicube PDRN Pink Hyaluronic Moisturizing Cream est une crème hydratante qui combine le PDRN (Polydeoxyribonucleotide), l’acide hyaluronique et des peptides pour nourrir, régénérer et raffermir la peau.",
+     "price": 89.99, "categoryId": 4, "images": ["assets/images/produits/medicube1.jpg","assets/images/produits/medicube2.jpg","assets/images/produits/medicube3.jpg"], "rating": 4.2, "reviews": [], "stock": 15, "isFeatured": false, "isNew": true },
+    { "id": 19, "name": "Cleor Créme hydratante : HYDRO-CRÈME RICHE 24H - 50ML", "description": "Formulée spécialement pour les peaux sèches et sensibles, cette crème offre l'alliance parfaite pour une peau intensément hydratée, nourrie et protégée.",
+     "price": 149.99, "categoryId": 4, "images": ["assets/images/produits/Cleor1.jpg","assets/images/produits/cleor2.jpg","assets/images/produits/cleor3.jpg"], "rating": 4.5, "reviews": [], "stock": 12, "isFeatured": false, "isNew": true },
+    { "id": 20, "name": "Golden Rose Gloss Creamy Soft&Matte Gr N°107", "description": "Crée une finition mate et douce sur les lèvres avec une formule couvrante, durable et sans poids. Une formule innovante, non desséchante, s'applique en douceur, garde vos lèvres souples et hydratées.",
+     "price": 15.00, "categoryId": 1, "images": ["assets/images/produits/golden_rose1.jpg","assets/images/produits/golden_rose2.jpg","assets/images/produits/golden_rose3.jpg"], "rating": 4.3, "reviews": [], "stock": 20, "isFeatured": false, "isNew": true }
+  ],
+
+  "reviews": [
+    { "id": 1, "productId": 1, "userId": 1, "rating": 5, "comment": "Super Hydratante !", "date": "2025-10-01" },
+    { "id": 2, "productId": 1, "userId": 2, "rating": 4, "comment": "Bon rapport qualité/prix.", "date": "2025-10-05" },
+    { "id": 3, "productId": 2, "userId": 1, "rating": 5, "comment": "produit agréable.", "date": "2025-10-10" },
+    { "id": 4, "productId": 3, "userId": 2, "rating": 4, "comment": "Excellent pour la peau .", "date": "2025-10-12" },
+    { "id": 5, "productId": 4, "userId": 1, "rating": 4, "comment": "Bon rapport qualité/prix.", "date": "2025-10-15" }
+  ],
+
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Aicha",
+      "lastName": "Rezgui",
+      "email": "aicha@example.com",
+      "password": "123456",
+      "addresses": [
+        { "id": 1, "street": "123 Rue Exemple", "city": "Tunis", "zip": "1000", "country": "Tunisie" }
+      ],
+      "favorites": [1,3,5],
+      "orders": [1]
+    },
+    {
+      "id": 2,
+      "firstName": "amal",
+      "lastName": "mekni",
+      "email": "amal@example.com",
+      "password": "123456",
+      "addresses": [
+        { "id": 2, "street": "456 Rue Test", "city": "Sfax", "zip": "3000", "country": "Tunisie" }
+      ],
+      "favorites": [2,4,6],
+      "orders": []
+    }
+  ],
+
+  "cart": [
+    {
+      "id": 1,
+      "userId": 1,
+      "items": [
+        { "productId": 1, "quantity": 1 },
+        { "productId": 3, "quantity": 2 }
+      ]
+    }
+  ],
+
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "items": [
+        { "productId": 1, "quantity": 1, "price": 699.99 },
+        { "productId": 3, "quantity": 2, "price": 29.99 }
+      ],
+      "total": 759.97,
+      "shippingAddress": { "street": "123 Rue Exemple", "city": "Tunis", "zip": "1000", "country": "Tunisie" },
+      "status": "En cours",
+      "date": "2025-10-20"
+    }
+  ],
+
+  "sliders": [
+    { "id": 1, "image": "assets/images/sliders/slider1.png", "title": "Anua Serum", "productId": 3, "link": "/products/3" },
+    { "id": 2, "image": "assets/images/sliders/slider2.jpg", "title": "Essence Lip Oil MOCHA GLOW", "productId": 14, "link": "/products/14" },
+    { "id": 3, "image": "assets/images/sliders/slider3.jpg", "title": "Flormar Lipstick", "productId": 7, "link": "/products/13" },
+    { "id": 4, "image": "assets/images/sliders/slider4.jpg", "title": "Golden Rose MASCARA SMOKEY LASHES", "productId": 15, "link": "/products/15" }
+  ]
+}
