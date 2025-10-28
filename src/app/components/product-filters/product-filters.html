@@ -1,0 +1,25 @@
+<h3>Filtres</h3>
+
+<div class="filter-group">
+  <label>Catégorie</label>
+  <select [(ngModel)]="selectedCategory" (change)="emitFilters()">
+    <option [ngValue]="null">Toutes</option>
+    <option *ngFor="let cat of categories" [ngValue]="cat.id">{{ cat.name }}</option>
+  </select>
+</div>
+
+<div class="filter-group">
+  <label>Prix (TND)</label>
+  <input type="number" placeholder="Min" [(ngModel)]="minPrice" (input)="emitFilters()" />
+  <input type="number" placeholder="Max" [(ngModel)]="maxPrice" (input)="emitFilters()" />
+</div>
+
+<div class="filter-group">
+  <label>Note minimale</label>
+  <select [(ngModel)]="minRating" (change)="emitFilters()">
+    <option [ngValue]="null">Toutes</option>
+    <option *ngFor="let r of [1,2,3,4,5]" [ngValue]="r">{{ r }} ⭐ et plus</option>
+  </select>
+</div>
+
+<button class="reset-btn" (click)="resetFilters()">Réinitialiser</button>

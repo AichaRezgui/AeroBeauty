@@ -1,0 +1,25 @@
+<section class="featured-section">
+  <h2 class="section-title">Produits Vedettes</h2>
+
+  <div *ngIf="isLoading" class="loading">Chargement des produits...</div>
+
+  <div class="grid" *ngIf="!isLoading">
+    <div
+      class="card"
+      *ngFor="let product of featuredProducts"
+      [routerLink]="['/product', product.id]"
+    >
+      <div class="image-container">
+        <img [src]="product.images[0]" [alt]="product.name" />
+        <span *ngIf="product.isNew" class="badge new">Nouveau</span>
+        <span *ngIf="product.isFeatured" class="badge featured">★</span>
+      </div>
+
+      <div class="card-content">
+        <h3>{{ product.name }}</h3>
+        <p class="price">{{ product.price | currency: 'TND' }}</p>
+        <p class="rating">⭐ {{ product.rating }} / 5</p>
+      </div>
+    </div>
+  </div>
+</section>

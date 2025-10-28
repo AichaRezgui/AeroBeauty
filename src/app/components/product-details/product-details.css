@@ -92,40 +92,5 @@
   background-color: #00796b;
 }
 
-.reviews-list {
-  margin-top: 20px;
-}
 
-.review-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  background-color: #fafafa;
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.stars span {
-  color: #ccc;
-  font-size: 1rem;
-}
-
-.stars span.filled {
-  color: gold;
-}
-
-.average-rating {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-}
-.reviews-container {
-  max-width: 1100px; 
-  margin: 0 auto;   
-  padding: 0 20px;  
-}
 

@@ -1,0 +1,17 @@
+<section class="categories-section">
+  <h2 class="section-title">Catégories</h2>
+
+  <div *ngIf="isLoading" class="loading">Chargement des catégories...</div>
+
+  <div class="categories-grid" *ngIf="!isLoading">
+    <a
+      *ngFor="let cat of categories"
+      class="category-card"
+      [routerLink]="['/products']"
+      [queryParams]="{ category: cat.id }"
+    >
+      <img [src]="cat.image" [alt]="cat.name" />
+      <div class="category-name">{{ cat.name }}</div>
+    </a>
+  </div>
+</section>

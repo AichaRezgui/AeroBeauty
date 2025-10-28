@@ -1,14 +1,14 @@
-.product-list-container {
+.product-list-layout {
+  display: flex;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
   font-family: 'Segoe UI', sans-serif;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-weight: 600;
+.main-content {
+  flex: 1;
 }
 
 .grid {
@@ -19,95 +19,146 @@
 
 .card {
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  border: 1px solid #f1f1f1;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.1); 
 }
 
 .image-container {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid #eee;
+  background-color: #fafafa;
 }
 
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .image-container img {
+  transform: scale(1.05);
 }
 
 .badge {
   position: absolute;
   top: 10px;
-  right: 10px;
   padding: 4px 8px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   border-radius: 8px;
-  color: white;
+  color: #fff;
+  font-weight: 500;
 }
 
 .badge.new {
-  background-color: #2196f3;
+  right: 10px;
+  background-color: #ec407a; 
 }
 
 .badge.featured {
-  right: auto;
   left: 10px;
-  background-color: #ff9800;
+  background-color: #ffb300; 
 }
 
 .card-content {
   padding: 1rem;
+  text-align: center;
 }
 
 .card-content h3 {
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
+  font-size: 1rem;
   font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .price {
-  color: #009688;
-  font-weight: bold;
-}
-
-.desc {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 0.5rem;
+  color: #e91e63; 
+  font-weight: 600;
+  margin-bottom: 0.3rem;
 }
 
 .rating {
   font-size: 0.9rem;
   color: #fbc02d;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
-.btn {
-  display: inline-block;
-  background-color: #009688;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+.btn-icon {
+  background-color: transparent;
+  border: 1px solid #f8bbd0; 
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  margin: 0 auto;
 }
 
-.btn:hover {
-  background-color: #00796b;
+.btn-icon .material-icons {
+  color: #e91e63;
+  font-size: 22px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #fff0f5;
+  box-shadow: 0 2px 6px rgba(233, 30, 99, 0.15);
+  transform: scale(1.05);
+}
+
+.btn-icon:hover .material-icons {
+  color: #d81b60;
+  transform: scale(1.1);
 }
 
 .loading,
 .error {
   text-align: center;
-  font-size: 1.1rem;
-  color: #777;
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.loading {
+  color: #999;
+}
+
+.error {
+  color: #e91e63;
+  font-weight: 500;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.card-footer .rating {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fbc02d; 
+}
+
+.card-footer .btn-icon {
+  margin: 0;
 }

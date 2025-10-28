@@ -1,0 +1,17 @@
+<div class="recommended-section">
+  <h3>Produits similaires</h3>
+
+  <div class="recommended-list">
+    <div class="arrow left" (click)="scrollLeft()">&#10094;</div>
+
+    <div class="recommended-container" #scrollContainer>
+      <div *ngFor="let product of products" class="recommended-card" (click)="goToDetails(product.id)">
+          <img [src]="product.images[0]" [alt]="product.name" />
+          <h4>{{ product.name }}</h4>
+          <p>{{ product.price | currency:'TND' }}</p>
+      </div>
+    </div>
+
+    <div class="arrow right" (click)="scrollRight()">&#10095;</div>
+  </div>
+</div>

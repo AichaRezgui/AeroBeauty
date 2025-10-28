@@ -1,0 +1,25 @@
+<div class="reviews-container">
+  <h3>Avis des clients</h3>
+
+  <div *ngIf="reviews.length > 0" class="average-rating">
+    <span>⭐ {{ averageRating | number:'1.1-1' }}/5</span>
+    <span>({{ reviews.length }} avis)</span>
+  </div>
+
+  <div *ngIf="reviews.length > 0; else noReviews" class="reviews-list">
+    <div *ngFor="let review of reviews" class="review-card">
+      <div class="review-header">
+        <strong>{{ getUserName(review.userId) }}</strong>
+        <span class="stars">
+          <ng-container *ngFor="let _ of getStars(review.rating)">⭐</ng-container>
+        </span>
+      </div>
+      <p>{{ review.comment }}</p>
+      <small>{{ review.date | date:'longDate' }}</small>
+    </div>
+  </div>
+
+  <ng-template #noReviews>
+    <p>Aucun avis pour ce produit.</p>
+  </ng-template>
+</div>

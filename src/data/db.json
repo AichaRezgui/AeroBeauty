@@ -19,9 +19,9 @@
     { "id": 5, "name": "Essence Fond De Teint I Love Flawless Skin 50", "description": "Malgré sa formule légère, le fond de teint essence I LOVE FLAWLESS SKIN est entièrement opaque. Pour un fini naturel et mat. La formule tient plus longtemps, sans obstruer les pores. Elle protège également la peau avec un SPF 20.",
      "price": 70.99, "categoryId": 3, "images": ["assets/images/produits/fontdeteint1.jpg","assets/images/produits/fontdeteint2.jpg","assets/images/produits/fontdeteint3.jpg"], "rating": 4.1, "reviews": [], "stock": 25, "isFeatured": true, "isNew": true },
     { "id": 6, "name": "Golden Rose BB CREME GOLDEN ROSE N°04", "description": "Tout en un, une peau d'apparence instantanément parfaite! Donne à la peau un éclat sain! Avec sa texture légère et facile à appliquer, il lisse et unifie le teint et hydrate la peau pendant la journée. Cache l'apparence des imperfections cutanées. Avec SP",
-     "price": 80.99, "categoryId": 3, "images": ["assets/images/produits/bb_cream1.jpg","assets/images/produits/bb_cream1.jpg","assets/images/produits/bb_cream1.jpg"], "rating": 4.3, "reviews": [], "stock": 100, "isFeatured": false, "isNew": true },
+     "price": 80.99, "categoryId": 3, "images": ["assets/images/produits/bb_cream1.jpg","assets/images/produits/bb_cream2.jpg","assets/images/produits/bb_cream3.jpg"], "rating": 4.3, "reviews": [], "stock": 100, "isFeatured": true, "isNew": true },
     { "id": 7, "name": "Flormar Lipstick Weightless Hd Orange Marmalade", "description": "Si vous recherchez un rouge à lèvres facilement applicable, crémeux et léger pour obtenir un aspect doux et mat, essayez le HD Weightless Lipstick. Avec ses couleurs étonnantes et sa formule longue durée, le HD Weightless Lipstick crée un effet impeccable sur votre maquillage tout en hydratant vos lèvres pour créer un aspect sain. Choisissez la couleur qui correspond le mieux à votre teint de la large gamme de couleurs HD Weightless Lipstick.",
-     "price": 25.00, "categoryId": 1, "images": ["assets/images/produits/lip_stick1.jpg","assets/images/produits/lip_stick2.jpg","assets/images/produits/lip_stick3.jpg"], "rating": 4.0, "reviews": [], "stock": 40, "isFeatured": false, "isNew": true },
+     "price": 25.00, "categoryId": 1, "images": ["assets/images/produits/lip_stick1.jpg","assets/images/produits/lip_stick2.jpg","assets/images/produits/lip_stick3.jpg"], "rating": 4.0, "reviews": [], "stock": 40, "isFeatured": true, "isNew": true },
     { "id": 8, "name": "Vaseline Baume à lèvres Lip Therapy Rosy Lips 7g", "description": "Le baume à lèvres Rosy Lips de VASELINE est bien plus qu'un simple baume; il s'agit d'une expérience hydratante exceptionnelle pour vos lèvres. Sa formule unique, enrichie de la gelée Vaseline pure, offre une solution instantanée pour les lèvres sèches et abîmées. Cette combinaison spéciale adoucit et apaise immédiatement, laissant vos lèvres hydratées et soignées.",
      "price": 15.00, "categoryId": 1, "images": ["assets/images/produits/vaseline1.jpg","assets/images/produits/vaseline2.jpg","assets/images/produits/vaseline3.jpg"], "rating": 4.6, "reviews": [], "stock": 20, "isFeatured": false, "isNew": false },
     { "id": 9, "name": "REVOLUTION BEAUTY LONDON Big Lash", "description": "Sa brosse large et pointue apporte un effet woah à chaque cils ! Les petits picots attrapent les plus petits cils dès leur racine pour les recouvrir de produit. Les longs picots enrobent chaque cils de la racine à la pointe pour leur apporter volume et longueur. De plus, la formule waterproof vous assure une tenue parfaite, pour des cils extraordinaires en toute circonstance..",
@@ -50,13 +50,31 @@
      "price": 15.00, "categoryId": 1, "images": ["assets/images/produits/golden_rose1.jpg","assets/images/produits/golden_rose2.jpg","assets/images/produits/golden_rose3.jpg"], "rating": 4.3, "reviews": [], "stock": 20, "isFeatured": false, "isNew": true }
   ],
 
-  "reviews": [
+ "reviews": [
     { "id": 1, "productId": 1, "userId": 1, "rating": 5, "comment": "Super Hydratante !", "date": "2025-10-01" },
     { "id": 2, "productId": 1, "userId": 2, "rating": 4, "comment": "Bon rapport qualité/prix.", "date": "2025-10-05" },
     { "id": 3, "productId": 2, "userId": 1, "rating": 5, "comment": "produit agréable.", "date": "2025-10-10" },
     { "id": 4, "productId": 3, "userId": 2, "rating": 4, "comment": "Excellent pour la peau .", "date": "2025-10-12" },
-    { "id": 5, "productId": 4, "userId": 1, "rating": 4, "comment": "Bon rapport qualité/prix.", "date": "2025-10-15" }
-  ],
+    { "id": 5, "productId": 4, "userId": 1, "rating": 4, "comment": "Bon rapport qualité/prix.", "date": "2025-10-15" },
+    
+    { "id": 6, "productId": 1, "userId": 3, "rating": 5, "comment": "Texture incroyable, pénètre rapidement !", "date": "2025-10-18" },
+    { "id": 7, "productId": 2, "userId": 4, "rating": 3, "comment": "Parfum trop fort à mon goût.", "date": "2025-10-20" },
+    { "id": 8, "productId": 3, "userId": 5, "rating": 5, "comment": "Résultats visibles après une semaine !", "date": "2025-10-22" },
+    { "id": 9, "productId": 4, "userId": 2, "rating": 4, "comment": "Packaging élégant et pratique.", "date": "2025-10-25" },
+    { "id": 10, "productId": 5, "userId": 1, "rating": 5, "comment": "Ma peau n'a jamais été aussi douce !", "date": "2025-10-28" },
+    
+    { "id": 11, "productId": 2, "userId": 2, "rating": 2, "comment": "Laissé ma peau grasse, déçu.", "date": "2025-11-01" },
+    { "id": 12, "productId": 5, "userId": 1, "rating": 5, "comment": "Parfait pour les peaux sensibles.", "date": "2025-11-03" },
+    { "id": 13, "productId": 3, "userId": 1, "rating": 4, "comment": "Légère sensation de fraîcheur appréciable.", "date": "2025-11-05" },
+    { "id": 14, "productId": 1, "userId": 2, "rating": 5, "comment": "Devenu un indispensable de ma routine !", "date": "2025-11-08" },
+    { "id": 15, "productId": 4, "userId": 2, "rating": 3, "comment": "Correct mais rien d'exceptionnel.", "date": "2025-11-10" },
+    
+    { "id": 16, "productId": 5, "userId": 1, "rating": 5, "comment": "Effet bonne mine immédiat !", "date": "2025-11-12" },
+    { "id": 17, "productId": 2, "userId": 2, "rating": 4, "comment": "Texture légère, parfait sous le maquillage.", "date": "2025-11-15" },
+    { "id": 18, "productId": 3, "userId": 1, "rating": 5, "comment": "Répare vraiment la barrière cutanée.", "date": "2025-11-18" },
+    { "id": 19, "productId": 1, "userId": 2, "rating": 2, "comment": "N'a pas convenu à ma peau mixte.", "date": "2025-11-20" },
+    { "id": 20, "productId": 4, "userId": 1, "rating": 5, "comment": "Valeur sûre, je rachèterai !", "date": "2025-11-22" }
+],
 
   "users": [
     {
@@ -113,8 +131,10 @@
 
   "sliders": [
     { "id": 1, "image": "assets/images/sliders/slider1.png", "title": "Anua Serum", "productId": 3, "link": "/products/3" },
-    { "id": 2, "image": "assets/images/sliders/slider2.jpg", "title": "Essence Lip Oil MOCHA GLOW", "productId": 14, "link": "/products/14" },
+    { "id": 2, "image": "assets/images/sliders/slider9.jpg", "title": "Essence Lip Oil ", "productId": 14, "link": "/products/14" },
     { "id": 3, "image": "assets/images/sliders/slider3.jpg", "title": "Flormar Lipstick", "productId": 7, "link": "/products/13" },
-    { "id": 4, "image": "assets/images/sliders/slider4.jpg", "title": "Golden Rose MASCARA SMOKEY LASHES", "productId": 15, "link": "/products/15" }
+    { "id": 5, "image": "assets/images/sliders/slider6.jpg", "title": "AeroBeauty", "productId": 3, "link": "/products" },
+    { "id": 6, "image": "assets/images/sliders/slider7.jpg", "title": "Skin Care", "productId": 3, "link": "/products" },
+    { "id": 7, "image": "assets/images/sliders/slider8.jpg", "title": "MakeUp", "productId": 3, "link": "/products" }
   ]
 }

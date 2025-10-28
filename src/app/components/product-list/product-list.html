@@ -1,29 +1,39 @@
-<div class="product-list-container">
-  <h2 class="title">Nos Produits</h2>
+<app-search-bar></app-search-bar>
+<div class="product-list-layout">
+  <aside class="sidebar">
+    <app-product-filters
+      [categories]="categories"
+      [initialCategory]="selectedCategoryFromUrl"
+      (filtersChange)="applyFilters($event)"
+    ></app-product-filters>
+  </aside>
 
-  <div *ngIf="isLoading" class="loading">Chargement...</div>
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <main class="main-content">
+    <h2 class="title">Nos Produits</h2>
 
-  <div class="grid" *ngIf="!isLoading && !errorMessage">
-  <div
-    class="card"
-    *ngFor="let product of products"
-    (click)="goToDetails(product.id)"
-  >
-    <div class="image-container">
-      <img [src]="product.images[0]" [alt]="product.name" />
-      <span *ngIf="product.isNew" class="badge new">Nouveau</span>
-      <span *ngIf="product.isFeatured" class="badge featured">★</span>
+    <app-product-sort (sortChange)="applySort($event)"></app-product-sort>
+
+    <div *ngIf="isLoading" class="loading">Chargement...</div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    <div class="grid" *ngIf="!isLoading && !errorMessage">
+      <div class="card" *ngFor="let product of filteredProducts" (click)="goToDetails(product.id)">
+        <div class="image-container">
+          <img [src]="product.images[0]" [alt]="product.name" />
+          <span *ngIf="product.isNew" class="badge new">Nouveau</span>
+           <span *ngIf="product.isFeatured" class="badge featured">★</span>
+        </div>
+        <div class="card-content">
+          <h3>{{ product.name }}</h3>
+          <p class="price">{{ product.price | currency:'TND' }}</p>
+          <div class="card-footer">
+            <p class="rating">⭐ {{ product.rating }} / 5</p>
+            <button class="btn-icon" (click)="addToCart($event, product)">
+              <span class="material-icons">shopping_bag</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="card-content">
-      <h3>{{ product.name }}</h3>
-      <p class="price">{{ product.price | currency:'DT' }}</p>
-      <p class="rating">⭐ {{ product.rating }} / 5</p>
-      <button class="btn" (click)="addToCart($event, product)">
-        Ajouter au panier
-      </button>
-    </div>
-  </div>
-</div>
+  </main>
 </div>

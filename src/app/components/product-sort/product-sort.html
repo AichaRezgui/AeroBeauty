@@ -1,0 +1,10 @@
+ <div class="sort-bar">
+      <label>Trier par :</label>
+      <select (change)="onSortChange($event)">
+        <option value="">Aucun</option>
+        <option value="priceAsc">Prix croissant</option>
+        <option value="priceDesc">Prix décroissant</option>
+        <option value="rating">Popularité</option>
+        <option value="new">Nouveautés</option>
+      </select>
+    </div>

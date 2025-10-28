@@ -17,7 +17,7 @@
   <div class="info">
     <h2>{{ product.name }}</h2>
     <p class="desc">{{ product.description }}</p>
-    <p class="price">{{ product.price | currency:'DT' }}</p>
+    <p class="price">{{ product.price | currency:'TND' }}</p>
     <p class="stock" [class.out]="product.stock === 0">
       {{ product.stock && product.stock > 0 ? 'En stock (' + product.stock + ')' : 'Rupture de stock' }}
     </p>
@@ -31,33 +31,12 @@
     <button class="btn" (click)="addToCart()">Ajouter au panier</button>
   </div>
 </div>
-<div class="reviews-container">
-  <h3>Avis des clients</h3>
+<app-reviews [productId]="product!.id"></app-reviews>
+  <app-recommended-products
+  [categoryId]="product!.categoryId"
+  [currentProductId]="product!.id">
+</app-recommended-products>
 
-  <div *ngIf="reviews.length > 0" class="average-rating">
-    <span>⭐ {{ averageRating | number:'1.1-1' }}/5</span>
-    <span>({{ reviews.length }} avis)</span>
-  </div>
 
-  <div *ngIf="reviews.length > 0; else noReviews" class="reviews-list">
-    <div *ngFor="let review of reviews" class="review-card">
-      <div class="review-header">
-        <strong>{{ getUserName(review.userId) }}</strong>
-        <span class="stars">
-         <ng-container *ngFor="let _ of getStars(review.rating)">
-    ⭐
-         </ng-container>
-        </span>
-
-      </div>
-      <p>{{ review.comment }}</p>
-      <small>{{ review.date | date:'longDate' }}</small>
-    </div>
-  </div>
-
-  <ng-template #noReviews>
-    <p>Aucun avis pour ce produit.</p>
-  </ng-template>
-</div>
 
 
