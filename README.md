@@ -24,12 +24,8 @@ L’application met en avant une interface moderne, fluide et responsive avec un
 ## 💻 Installation et lancement
 
 ### 1. Cloner le projet
-```bash
 git clone https://github.com/ton-compte/AeroBeauty.git
-
 cd AeroBeauty
-
-
 
 ### 2. Installer les dépendances Angular
 npm install
