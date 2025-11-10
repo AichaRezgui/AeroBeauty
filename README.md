@@ -45,7 +45,7 @@ http://localhost:4200/
 
 ##  Structure du projet
 
-![Structure](/captures/nom-de-l-image.png)
+![Structure](/captures/structure.png)
 
 ## Fonctionnalités implémentées
 🏠Page d’accueil
