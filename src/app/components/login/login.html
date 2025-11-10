@@ -1,0 +1,58 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Se connecter</h2>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="exemple@email.com"
+          #emailModel="ngModel"
+        />
+        <div class="error" *ngIf="emailModel.invalid && emailModel.touched">
+          Entrez une adresse e-mail valide.
+        </div>
+      </div>
+
+      <div class="form-group password-group">
+        <label for="loginPassword">Mot de passe</label>
+        <div class="password-input">
+          <input
+            type="password"
+            id="loginPassword"
+            name="password"
+            [(ngModel)]="password"
+            required
+            minlength="6"
+            placeholder="Votre mot de passe"
+            #passwordModel="ngModel"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword('loginPassword')">👁️</button>
+        </div>
+        <div class="error" *ngIf="passwordModel.invalid && passwordModel.touched">
+          Mot de passe requis (min 6 caractères).
+        </div>
+      </div>
+
+      <div class="error" *ngIf="error">{{ error }}</div>
+
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="loginForm.invalid"
+      >
+        Se connecter
+      </button>
+
+      <p class="login-link">
+        Pas encore de compte ?
+        <a (click)="goToRegister()">Inscrivez-vous</a>
+      </p>
+    </form>
+  </div>
+</div>

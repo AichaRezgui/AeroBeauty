@@ -59,7 +59,7 @@
 }
 
 .badge.new {
-  background-color: #2196f3;
+  background-color:  #e33f76;
 }
 
 .badge.featured {
@@ -74,7 +74,7 @@
 }
 
 .price {
-  color: #009688;
+  color:  #a70b3f;
   font-weight: bold;
 }
 
@@ -82,4 +82,33 @@
   font-size: 0.9rem;
   color: #fbc02d;
   margin-top: 0.3rem;
+}
+
+.badge.out-of-stock {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 192, 203, 0.9); 
+  color: #b03060; 
+  font-size: 0.65rem; 
+  font-weight: 500;
+  padding: 3px 7px; 
+  border-radius: 12px;
+  letter-spacing: 0.2px;
+  text-transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  opacity: 0.95;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.card .out-of-stock ~ img {
+  opacity: 0.6;
+  filter: grayscale(50%);
 }

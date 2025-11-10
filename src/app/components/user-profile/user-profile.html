@@ -1,0 +1,47 @@
+<div *ngIf="user; else noUser" class="profile-container">
+  <h2 class="profile-title">👤 Espace personnel</h2>
+
+  <div class="profile-tabs">
+    <button 
+      [class.active]="activeTab === 'info'" 
+      (click)="activeTab = 'info'">Infos</button>
+    <button 
+      [class.active]="activeTab === 'address'" 
+      (click)="activeTab = 'address'">Adresses</button>
+    <button 
+      [class.active]="activeTab === 'favorites'" 
+      (click)="activeTab = 'favorites'">Favoris</button>
+    <button 
+      [class.active]="activeTab === 'orders'" 
+      (click)="activeTab = 'orders'">Commandes</button>
+  </div>
+
+  <div class="profile-content">
+  <app-profile-info
+  *ngIf="activeTab === 'info' && user"
+  [user]="user!">
+</app-profile-info>
+
+<app-address-list
+  *ngIf="activeTab === 'address' && user"
+  [addresses]="user!.addresses">
+</app-address-list>
+
+<app-favorites
+  *ngIf="activeTab === 'favorites' && user"
+  [favorites]="user!.favorites">
+</app-favorites>
+
+
+    <app-orders 
+        *ngIf="activeTab === 'orders'" 
+        [orders]="orders">
+    </app-orders>
+  </div>
+</div>
+
+<ng-template #noUser>
+  <div class="empty">
+    <p>⚠️ Veuillez vous connecter pour accéder à votre profil.</p>
+  </div>
+</ng-template>

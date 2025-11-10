@@ -1,0 +1,87 @@
+<div class="cart-container" *ngIf="cart && cart.items.length > 0; else empty">
+  <div class="cart-header">
+    <h2>Votre Panier</h2>
+    <span class="item-count">{{cart.items.length}} article(s)</span>
+  </div>
+<div *ngIf="errorMessage" class="stock-error">
+  {{ errorMessage }}
+</div>
+
+  <div class="cart-content">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cart.items">
+        <div class="item-image">
+          <img [src]="productsMap[item.productId]?.images?.[0]" alt="image" />
+        </div>
+        <div class="item-details">
+          <h4>{{ productsMap[item.productId]?.name }}</h4>
+          <div class="mobile-price">{{ productsMap[item.productId]?.price | currency:'TND' }}</div>
+        </div>
+        <div class="item-price desktop-only">{{ productsMap[item.productId]?.price | currency:'TND' }}</div>
+        <div class="item-quantity">
+         <input 
+            type="number"
+             [(ngModel)]="item.quantity"
+             [max]="productsMap[item.productId]?.stock ?? 0"
+             min="1"
+            (change)="updateQuantity(item)"
+          />
+  <small class="stock-info">
+    Stock : {{ productsMap[item.productId]?.stock }}
+  </small>
+</div>
+
+        <div class="item-subtotal">{{ getSubtotal(item) | currency:'TND' }}</div>
+        <div class="item-actions">
+          <button class="delete-btn" (click)="removeItem(item.productId)" title="Supprimer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-card">
+        <h3>Résumé de la commande</h3>
+        <div class="summary-line">
+          <span>Sous-total ({{cart.items.length}} article(s))</span>
+          <span>{{ getSubtotalAll() | currency:'TND' }}</span>
+        </div>
+        <div class="summary-line">
+          <span>Frais de livraison</span>
+          <span>{{ deliveryFee | currency:'TND' }}</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span>{{ getTotal() | currency:'TND' }}</span>
+        </div>
+        <button class="checkout-btn" (click)="checkout()">Procéder au paiement</button>
+        <div class="secure-checkout">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Paiement sécurisé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="empty-cart">
+    <div class="empty-icon">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.4 5.2 16.4H17M17 13V16.4M9 19C9 19.6 8.6 20 8 20C7.4 20 7 19.6 7 19C7 18.4 7.4 18 8 18C8.6 18 9 18.4 9 19ZM17 19C17 19.6 16.6 20 16 20C15.4 20 15 19.6 15 19C15 18.4 15.4 18 16 18C16.6 18 17 18.4 17 19Z" stroke="#e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3>Votre panier est vide</h3>
+    
+  <img src="/assets/emptycart.jpg" alt="Vide" class="empty-img">
+    <p>Découvrez nos produits et ajoutez-les à votre panier</p>
+    <a (click)="acceuil()" class="continue-shopping-btn">Continuer mes achats</a>
+  </div>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="address-container">
+  <h3>📍 Adresses enregistrées</h3>
+
+  <div *ngIf="!addresses || addresses.length === 0" class="no-address">
+    <p>Aucune adresse enregistrée.</p>
+    <button class="btn-add">+ Ajouter une adresse</button>
+  </div>
+
+  <div *ngIf="addresses && addresses.length > 0" class="address-grid">
+    <div *ngFor="let a of addresses" class="address-card">
+      <div class="address-info">
+        <p class="street">{{ a.street }}</p>
+        <p class="city">{{ a.city }} {{ a.zip }}</p>
+        <p class="country">{{ a.country }}</p>
+      </div>
+    </div>
+  </div>
+</div>

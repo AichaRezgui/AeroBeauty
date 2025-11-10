@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../core/services/product';
 import { ReviewService } from '../../core/services/review';
 import { UserService } from '../../core/services/user';
+import { AuthService } from '../../core/services/auth';
+import { CartService } from '../../core/services/cart';
 import { Product } from '../../models/product';
 import { Review } from '../../models/review';
 import { User } from '../../models/user';
@@ -24,25 +26,31 @@ export class ProductDetailsComponent implements OnInit {
   quantity = 1;
   reviews: Review[] = [];
   usersMap: Record<number, User> = {};
+  toastMessage: string | null = null;
+
+  currentUser: User | null = null;
+  isFavorite = false;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private reviewService: ReviewService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      if (id) {
-        this.loadData(id);
-      }
+      if (id) this.loadData(id);
     });
 
     this.userService.getAll().subscribe(users => {
       users.forEach(u => (this.usersMap[u.id] = u));
     });
+
+    this.currentUser = this.authService.getCurrentUser();
   }
 
   private loadData(id: number): void {
@@ -52,6 +60,7 @@ export class ProductDetailsComponent implements OnInit {
       next: data => {
         this.product = data;
         this.selectedImage = data.images[0];
+        this.updateFavoriteStatus();
       },
       error: () => console.error('Erreur lors du chargement du produit')
     });
@@ -67,7 +76,40 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(): void {
-    console.log('Ajouté au panier :', this.product?.name, 'x', this.quantity);
+    if (this.product) {
+      this.cartService.addToCart(this.product, this.quantity);
+      this.showToast(`${this.product.name} a été ajouté au panier 🛒`);
+    }
+  }
+
+  toggleFavorite(): void {
+    if (!this.currentUser || !this.product) return;
+
+    const favorites = this.currentUser.favorites || [];
+    const index = favorites.indexOf(this.product.id);
+
+    if (index === -1) {
+      favorites.push(this.product.id);
+      this.showToast(`${this.product.name} ajouté aux favoris ❤️`);
+    } else {
+      favorites.splice(index, 1);
+      this.showToast(`${this.product.name} retiré des favoris 💔`);
+    }
+
+    this.currentUser.favorites = favorites;
+    this.userService.update(this.currentUser.id, this.currentUser).subscribe();
+    this.isFavorite = favorites.includes(this.product.id);
+  }
+
+  updateFavoriteStatus(): void {
+    if (this.currentUser && this.product) {
+      this.isFavorite = this.currentUser.favorites.includes(this.product.id);
+    }
+  }
+
+  showToast(message: string): void {
+    this.toastMessage = message;
+    setTimeout(() => (this.toastMessage = null), 4000);
   }
 
   get averageRating(): number {

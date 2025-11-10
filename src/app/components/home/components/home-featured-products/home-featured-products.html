@@ -13,6 +13,8 @@
         <img [src]="product.images[0]" [alt]="product.name" />
         <span *ngIf="product.isNew" class="badge new">Nouveau</span>
         <span *ngIf="product.isFeatured" class="badge featured">★</span>
+        <span *ngIf="product.stock === 0" class="badge out-of-stock">Rupture de stock</span>
+      
       </div>
 
       <div class="card-content">

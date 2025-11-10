@@ -22,13 +22,15 @@
           <img [src]="product.images[0]" [alt]="product.name" />
           <span *ngIf="product.isNew" class="badge new">Nouveau</span>
            <span *ngIf="product.isFeatured" class="badge featured">★</span>
+            <span *ngIf="product.stock === 0" class="badge out-of-stock">Rupture de stock</span>
+      
         </div>
         <div class="card-content">
           <h3>{{ product.name }}</h3>
           <p class="price">{{ product.price | currency:'TND' }}</p>
           <div class="card-footer">
             <p class="rating">⭐ {{ product.rating }} / 5</p>
-            <button class="btn-icon" (click)="addToCart($event, product)">
+            <button class="btn-icon" (click)="addToCart($event, product)"  [disabled]="product.stock === 0" [class.disabled]="product.stock === 0">
               <span class="material-icons">shopping_bag</span>
             </button>
           </div>
@@ -36,4 +38,8 @@
       </div>
     </div>
   </main>
+</div>
+<div class="toast" *ngIf="toastMessage">
+  <span class="material-icons">check_circle</span>
+  {{ toastMessage }}
 </div>

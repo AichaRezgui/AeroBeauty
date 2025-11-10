@@ -1,0 +1,83 @@
+<section class="checkout">
+  <h2>Finaliser la commande</h2>
+
+  <div class="checkout-layout">
+    <div class="checkout-form">
+      <div class="section">
+        <h3>Adresse de livraison</h3>
+        <form>
+          <input type="text" placeholder="Nom complet" [(ngModel)]="address.name" name="name" required />
+          <input type="text" placeholder="Téléphone" [(ngModel)]="address.phone" name="phone" required />
+          <input type="text" placeholder="Ville" [(ngModel)]="address.city" name="city" required />
+          <input type="text" placeholder="Rue / Détails" [(ngModel)]="address.street" name="street" required />
+        </form>
+      </div>
+
+      <div class="section">
+        <h3>Mode de livraison</h3>
+        <label class="radio">
+          <input type="radio" name="delivery" [(ngModel)]="deliveryMode" value="standard" /> Standard (7 TND)
+        </label>
+        <label class="radio">
+          <input type="radio" name="delivery" [(ngModel)]="deliveryMode" value="express" /> Express (15 TND)
+        </label>
+        <p *ngIf="getSubtotal() >= 200" class="free-shipping">🎁 Livraison gratuite au-delà de 200 TND !</p>
+      </div>
+
+      <div class="section">
+        <h3>Méthode de paiement</h3>
+        <label class="radio">
+          <input type="radio" name="payment" [(ngModel)]="paymentMethod" value="card" /> Carte bancaire
+        </label>
+        <label class="radio">
+          <input type="radio" name="payment" [(ngModel)]="paymentMethod" value="cash" /> Paiement à la livraison
+        </label>
+
+        <div *ngIf="paymentMethod === 'card'" class="card-form">
+          <input type="text" placeholder="Numéro de carte (ex : 4242 4242 4242 4242)" [(ngModel)]="card.number" name="cardNumber" maxlength="19" />
+          <div class="row">
+            <input type="text" placeholder="MM/AA" [(ngModel)]="card.expiry" name="expiry" maxlength="5" />
+            <input type="text" placeholder="CVC" [(ngModel)]="card.cvc" name="cvc" maxlength="3" />
+          </div>
+          <small class="secure">🔒 Paiement sécurisé simulé </small>
+        </div>
+      </div>
+
+      <button class="confirm-btn" (click)="confirmOrder()">Confirmer la commande</button>
+    </div>
+
+    <div class="checkout-summary" *ngIf="cart">
+      <h3>Récapitulatif de la commande</h3>
+      <div class="items">
+     <div class="item" *ngFor="let item of cart.items">
+      <div>
+        <strong>{{ productsMap[item.productId]?.name || 'Produit #' + item.productId }}</strong>
+        <p>Quantité : {{ item.quantity }}</p>
+      </div>
+      <p class="price">
+        {{ (item.price) * item.quantity | currency: 'TND' }}
+      </p>
+    </div>
+
+      </div>
+
+      <hr />
+
+      <div class="summary-line">
+        <span>Sous-total :</span>
+        <span>{{ getSubtotal() | currency: 'TND' }}</span>
+      </div>
+
+      <div class="summary-line">
+        <span>Frais de livraison :</span>
+        <span *ngIf="getDeliveryFee() === 0">Gratuit</span>
+        <span *ngIf="getDeliveryFee() !== 0">{{ getDeliveryFee() | currency: 'TND' }}</span>
+      </div>
+
+      <div class="summary-total">
+        <span>Total :</span>
+        <span>{{ getTotal() | currency: 'TND' }}</span>
+      </div>
+    </div>
+  </div>
+</section>

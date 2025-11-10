@@ -16,4 +16,13 @@ export class UserService {
   getById(id: number): Observable<User> {
     return this.api.getById<User>(this.path, id);
   }
+
+  create(user: User): Observable<User> {
+  return this.api.post<User>(this.path, user);
+}
+ update(id: number, user: User): Observable<User> {
+    return this.api.put<User>(this.path, id, user);
+  }
+
+
 }

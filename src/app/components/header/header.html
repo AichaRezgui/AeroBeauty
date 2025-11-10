@@ -3,6 +3,12 @@
     <a routerLink="/">🌸 <span>Aero</span>Beauty</a>
   </div>
 
+   <div class="burger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  
   <nav class="nav-links">
     <a routerLink="/">Accueil</a>
     <a routerLink="/products">Boutique</a>
@@ -11,8 +17,23 @@
   </nav>
 
   <div class="nav-icons">
-    <span class="material-icons">search</span>
-    <span class="material-icons">shopping_cart</span>
-    <span class="material-icons">account_circle</span>
+    <span class="material-icons" routerLink="/cart" style="cursor: pointer;">shopping_cart</span>
+    <span class="material-icons" routerLink="/profil" *ngIf="auth.isLoggedIn()">account_circle</span>
+    <span 
+      class="material-icons" 
+      style="cursor: pointer;"
+      *ngIf="!auth.isLoggedIn()"
+      (click)="goToLogin()"
+      title="Se connecter">login</span>
+
+    <span 
+      class="material-icons" 
+      style="cursor: pointer;"
+      *ngIf="auth.isLoggedIn()"
+      (click)="logout()"
+      title="Se déconnecter"
+    >logout</span>
+
+   
   </div>
 </header>

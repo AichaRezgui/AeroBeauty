@@ -1,0 +1,110 @@
+.address-container {
+  background: #fff5f8;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-top: 2rem;
+}
+
+h3 {
+  color: #e91e63;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.no-address {
+  text-align: center;
+  color: #555;
+}
+
+.btn-add {
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.btn-add:hover {
+  background: #f48fb1;
+}
+
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+}
+
+.address-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  border: 1px solid #f8bbd0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.address-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.address-info {
+  margin-bottom: 1rem;
+}
+
+.street {
+  font-weight: 600;
+  color: #333;
+}
+
+.city, .country {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.btn-edit, .btn-delete {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  background: #f48fb1;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #e91e63;
+}
+
+.btn-delete {
+  background: #f8bbd0;
+  color: #333;
+}
+
+.btn-delete:hover {
+  background: #f06292;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .address-container {
+    padding: 1.2rem;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}

@@ -1,59 +1,176 @@
-# AeroBeauty
+# 💄 AeroBeauty
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+## 📝 Description du projet
 
-## Development server
+**AeroBeauty** est une application e-commerce développée avec **Angular 20** permettant aux utilisateurs de naviguer parmi une sélection de produits de beauté, d’ajouter des articles à leur panier, de créer un compte, de se connecter, et de passer une commande simulée.
 
-To start a local development server, run:
+L’application met en avant une interface moderne, fluide et responsive avec un design épuré, tout en utilisant un **backend simulé via JSON Server** pour la gestion des données.
 
+---
+
+## ⚙️ Technologies utilisées
+
+- **Frontend** : Angular 20  
+- **Backend (simulation)** : JSON Server  
+- **Langages** : TypeScript, HTML5, CSS3  
+- **Outils et dépendances** :
+  - Angular CLI  
+  - Google Fonts (Roboto, Poppins)  
+  - Material Icons  
+  - LocalStorage pour la persistance du panier  
+
+---
+
+## 💻 Installation et lancement
+
+### 1. Cloner le projet
 ```bash
-ng serve
-```
+git clone https://github.com/ton-compte/AeroBeauty.git
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+cd AeroBeauty
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+### 2. Installer les dépendances Angular
+npm install
+ng add @angular/material      
+npm i swiper ngx-swiper-wrapper   
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 3. Installer et lancer le backend (JSON Server)
+npm install -g json-server   
+npx json-server --watch db.json --port 3000
 
-```bash
-ng generate --help
-```
+### 4. Lancer le frontend Angular
+ng serve 
 
-## Building
+### 5. Accéder à l’application
+http://localhost:4200/
 
-To build the project run:
+##  Structure du projet
 
-```bash
-ng build
-```
+AeroBeauty/
+│
+├── .angular/ # Fichiers de configuration Angular
+├── .vscode/ # Configuration VS Code
+├── captures/ # Captures d’écran pour le README
+├── node_modules/ # Dépendances installées
+├── public/ # Ressources publiques (favicon, images globales…)
+├── src/
+│ ├── app/
+│ │ ├── components/ # Composants 
+│ │ ├── core/ # Services principaux 
+│ │ ├── guards/ # Gardiens de routes (authentification, accès)
+│ │ ├── interceptor/ # Intercepteurs HTTP (gestion des requêtes, tokens)
+│ │ ├── models/ # Interfaces et modèles TypeScript
+│ │ ├── app.config.ts # Configuration principale
+│ │ ├── app.css # Styles globaux du module principal
+│ │ ├── app.html # Template principal
+│ │ ├── app.routes.ts # Gestion des routes principales
+│ │ ├── app.spec.ts # Tests unitaires du module principal
+│ │ ├── app.ts # Fichier racine du module Angular
+│ │
+│ ├── data/ # Données locales ou mockées
+│ ├── custom-theme.scss # Thème personnalisé global
+│ ├── index.html # Point d’entrée principal de l’application
+│ ├── main.ts # Bootstrap Angular
+│ └── styles.css # Feuille de style principale
+│
+├── angular.json # Configuration Angular
+├── package.json # Dépendances du projet
+├── package-lock.json # Versionnement des dépendances
+├── tsconfig.app.json # Configuration TypeScript du projet
+├── .editorconfig # Normes de formatage
+├── .gitignore # Fichiers exclus du dépôt
+└── README.md # Documentation du projet
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Fonctionnalités implémentées
+🏠Page d’accueil
 
-## Running unit tests
+Carousel présentant des produits
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Catégories de produits sous forme de cartes cliquables
 
-```bash
-ng test
-```
+Sélection de produits vedettes (8)
 
-## Running end-to-end tests
+Barre de recherche fonctionnelle
 
-For end-to-end (e2e) testing, run:
+Menu de navigation principal
 
-```bash
-ng e2e
-```
+🛍️ Catalogue de produits
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Affichage en grille (20 produits)
 
-## Additional Resources
+Carte produit : image, nom, prix, note, bouton Ajouter au panier
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Filtres par catégorie, prix et évaluation
+
+Tri par prix, popularité et nouveautés
+
+scroll infini
+
+📄 Détail produit
+
+Galerie de plusieurs images
+
+Description complète, disponibilité
+
+Avis clients simulés
+
+Ajout au panier et recommandations similaires
+
+🛒 Panier d’achat
+
+Liste des articles ajoutés avec :
+
+Image, nom, prix unitaire, quantité, sous-total
+
+Récapitulatif total (sous-total, livraison, total général)
+
+Persistance via LocalStorage
+
+🔐 Authentification
+
+Page d’inscription avec validation des champs
+
+Page de connexion avec gestion de session simulée
+
+Messages d’erreur et validation des formulaires
+
+👤 Espace utilisateur
+
+Modification du profil
+
+Historique des commandes
+
+Liste de favoris
+
+💳 Processus de commande 
+
+Page checkout avec adresse, livraison et paiement simulé
+
+Page de confirmation de commande
+
+## 📸 Captures d’écran
+
+
+| Page           | Capture                                           |
+| -------------- | ------------------------------------------------- |
+| Page d'accueil | ![Accueil](/captures/home1.png) <br>![Accueil 2](/captures/home2.png)           |
+| Catalogue      | ![Catalogue](/captures/products.png)    |
+| Détail produit | ![Produit](/captures/product-details1.png)<br>![Produit 2](/captures/product-details2.png) |
+| Panier         | ![Panier](/captures/panier.png) <br>![Panier vide](/captures/empty-cart.png) |
+| Connexion      | ![Connexion](/captures/login.png)        |
+| Inscription    | ![Inscription](/captures/sign-up.png)        |
+| Checkout       | ![Checkout](/captures/checkout.png)        |
+| Confirmation   | ![Confirmation](/captures/confirmation.png)        |
+| Profile-info   | ![Profile-info](/captures/profile-info.png)        |
+| Profile-orders | ![Profile-orders](/captures/profile-orders.png)        |
+| Profile-address| ![Profile-address](/captures/profile-address.png)        |
+| Profile-favoris| ![Profile-favoris](/captures/profile-favoris.png)        |
+
+
+## 💬 Difficultés rencontrées
+
+- Gestion du typage `id` (string vs number) avec JSON Server  
+
+REZGUI AICHA 

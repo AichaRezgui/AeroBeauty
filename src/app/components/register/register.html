@@ -1,0 +1,179 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Créer un compte</h2>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" novalidate>
+ 
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          [(ngModel)]="user.firstName"
+          required
+          minlength="2"
+          placeholder="Entrez votre prénom"
+          #firstName="ngModel"
+        />
+        <div class="error" *ngIf="firstName.invalid && firstName.touched">
+          Le prénom doit comporter au moins 2 caractères.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Nom</label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          [(ngModel)]="user.lastName"
+          required
+          minlength="2"
+          placeholder="Entrez votre nom"
+          #lastName="ngModel"
+        />
+        <div class="error" *ngIf="lastName.invalid && lastName.touched">
+          Le nom doit comporter au moins 2 caractères.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+          email
+          placeholder="exemple@email.com"
+          #email="ngModel"
+        />
+        <div class="error" *ngIf="email.invalid && email.touched">
+          Entrez une adresse e-mail valide.
+        </div>
+      </div>
+
+<div class="form-group password-group">
+  <label for="password">Mot de passe</label>
+  <div class="password-input">
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="user.password"
+      required
+      placeholder="Créez un mot de passe sécurisé"
+      #password="ngModel"
+    />
+    <button type="button" class="toggle-password" (click)="togglePassword('password')">👁️</button>
+  </div>
+
+  <ul class="password-rules">
+  <li [class.valid]="passwordChecks.hasUpper">Au moins une majuscule</li>
+  <li [class.valid]="passwordChecks.hasLower">Au moins une minuscule</li>
+  <li [class.valid]="passwordChecks.hasNumber">Au moins un chiffre</li>
+  <li [class.valid]="passwordChecks.hasSpecial">Un caractère spécial</li>
+  <li [class.valid]="passwordChecks.hasLength">Minimum 8 caractères</li>
+</ul>
+
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+</div>
+
+
+      <div class="form-group password-group">
+        <label for="confirmPassword">Confirmer le mot de passe</label>
+        <div class="password-input">
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            required
+            placeholder="Confirmez votre mot de passe"
+          />
+          <button type="button" class="toggle-password" (click)="togglePassword('confirmPassword')">👁️</button>
+        </div>
+      </div>
+      <div class="error" *ngIf="error">{{ error }}</div>
+
+      <h3>Adresse</h3>
+      <div class="form-group">
+        <label for="street">Rue</label>
+        <input
+          type="text"
+          id="street"
+          name="street"
+          [(ngModel)]="user.addresses[0].street"
+          required
+          placeholder="Nom de la rue"
+          #street="ngModel"
+        />
+        <div class="error" *ngIf="street.invalid && street.touched">Rue requise.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="city">Ville</label>
+        <input
+          type="text"
+          id="city"
+          name="city"
+          [(ngModel)]="user.addresses[0].city"
+          required
+          placeholder="Ville"
+          #city="ngModel"
+        />
+        <div class="error" *ngIf="city.invalid && city.touched">Ville requise.</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="zip">Code postal</label>
+          <input
+            type="text"
+            id="zip"
+            name="zip"
+            [(ngModel)]="user.addresses[0].zip"
+            required
+            pattern="^[0-9]{4,6}$"
+            placeholder="Ex : 2040"
+            #zip="ngModel"
+          />
+          <div class="error" *ngIf="zip.invalid && zip.touched">
+            Code postal invalide.
+          </div>
+        </div>
+
+        <div class="form-group half">
+          <label for="country">Pays</label>
+          <input
+            type="text"
+            id="country"
+            name="country"
+            [(ngModel)]="user.addresses[0].country"
+            required
+            placeholder="Pays"
+            #country="ngModel"
+          />
+          <div class="error" *ngIf="country.invalid && country.touched">
+            Pays requis.
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="registerForm.invalid"
+      >
+        S'inscrire
+      </button>
+
+      <p class="login-link">
+        Vous avez déjà un compte ?
+         <a (click)="goToLogin()">Connectez-vous</a> </p>
+    </form>
+  </div>
+</div>

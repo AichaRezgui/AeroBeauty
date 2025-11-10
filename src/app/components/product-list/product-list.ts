@@ -9,6 +9,7 @@ import { ProductSortComponent } from '../product-sort/product-sort';
 import { Product } from '../../../app/models/product';
 import { Category } from '../../../app/models/category';
 import { SearchBarComponent } from '../shared/search-bar/search-bar';
+import { CartService } from '../../core/services/cart';
 
 @Component({
   selector: 'app-product-list',
@@ -24,13 +25,14 @@ export class ProductListComponent implements OnInit {
   currentFilters: any = {};
   currentSort = '';
   selectedCategoryFromUrl: number | null = null;
-
+  toastMessage: string | null = null;
 
   isLoading = true;
   errorMessage = '';
 
   constructor(private productService: ProductService, private categoryService: CategoryService,
-     private router: Router,private route: ActivatedRoute) {}
+     private router: Router,private route: ActivatedRoute,
+         private cartService: CartService) {}
 
 ngOnInit() {
   this.loadData();
@@ -111,8 +113,14 @@ applyFilters(filters: any = {}) {
     this.router.navigate(['/product', id]);
   }
 
-  addToCart(event: Event, product: Product) {
-    event.stopPropagation();
-    console.log('Ajout au panier :', product.name);
-  }
+ addToCart(event: Event, product: Product) {
+  event.stopPropagation();
+  this.cartService.addToCart(product, 1);
+  this.showToast(`${product.name} a été ajouté au panier 🛒`);
+}
+
+showToast(message: string) {
+  this.toastMessage = message;
+  setTimeout(() => this.toastMessage = null, 4000); 
+}
 }

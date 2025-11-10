@@ -1,0 +1,50 @@
+<div class="profile-container">
+  <h3>Mon Profil</h3>
+
+  <div *ngIf="!editing" class="profile-display">
+    <p><strong>Nom :</strong> {{ user.firstName }} {{ user.lastName }}</p>
+    <p><strong>Email :</strong> {{ user.email }}</p>
+    <button class="btn-edit" (click)="editing = true">Modifier</button>
+  </div>
+
+  <form *ngIf="editing" (ngSubmit)="saveProfile()" class="profile-form">
+    <div class="input-group">
+      <label>Prénom</label>
+      <input [(ngModel)]="user.firstName" name="firstName" required />
+    </div>
+
+    <div class="input-group">
+      <label>Nom</label>
+      <input [(ngModel)]="user.lastName" name="lastName" required />
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input [(ngModel)]="user.email" name="email" type="email" required />
+    </div>
+
+    <button type="button" class="btn-link" (click)="showPasswordFields = !showPasswordFields">
+      {{ showPasswordFields ? 'Annuler le changement de mot de passe' : 'Changer le mot de passe' }}
+    </button>
+
+    <div *ngIf="showPasswordFields" class="password-section">
+      <div class="input-group">
+        <label>Ancien mot de passe</label>
+        <input [(ngModel)]="passwordData.currentPassword" name="currentPassword" type="password" required />
+      </div>
+      <div class="input-group">
+        <label>Nouveau mot de passe</label>
+        <input [(ngModel)]="passwordData.newPassword" name="newPassword" type="password" required />
+      </div>
+      <div class="input-group">
+        <label>Confirmer le nouveau mot de passe</label>
+        <input [(ngModel)]="passwordData.confirmPassword" name="confirmPassword" type="password" required />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn-save">Enregistrer</button>
+      <button type="button" class="btn-cancel" (click)="editing = false">Annuler</button>
+    </div>
+  </form>
+</div>

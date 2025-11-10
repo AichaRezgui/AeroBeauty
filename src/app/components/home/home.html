@@ -1,6 +1,14 @@
-<section class="home">
+<section class="home" *ngIf="!loading; else loadingTpl">
   <app-home-slider></app-home-slider>
   <app-search-bar></app-search-bar>
   <app-home-categories></app-home-categories>
   <app-home-featured-products></app-home-featured-products>
 </section>
+
+<ng-template #loadingTpl>
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement de la page...</p>
+  </div>
+</ng-template>
+

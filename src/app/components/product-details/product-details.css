@@ -22,6 +22,7 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
+  flex-wrap: wrap; 
 }
 
 .thumbnails img {
@@ -47,7 +48,7 @@
 .price {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #009688;
+  color: #a70b3f;
 }
 
 .stock {
@@ -78,7 +79,7 @@
 
 .btn {
   display: inline-block;
-  background-color: #009688;
+  background-color: #e14d7f;
   color: white;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -89,8 +90,216 @@
 }
 
 .btn:hover {
-  background-color: #00796b;
+  background-color: #e91e63;
 }
 
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #fff;
+  color: #333;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.15);
+  border: 1px solid #f8bbd0;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUpFade 0.4s ease forwards, fadeOut 0.5s ease 3.5s forwards;
+}
 
+.toast::before {
+  content: '🛍️';
+  font-size: 1.2rem;
+}
 
+.toast .material-icons {
+  color: #e91e63;
+  font-size: 22px;
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateY(20px); }
+}
+
+@media (max-width: 1024px) {
+  .details-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .gallery, .info {
+    min-width: 100%;
+  }
+
+  .thumbnails img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-image img {
+    height: auto;
+  }
+
+  .thumbnails {
+    justify-content: flex-start;
+    gap: 0.3rem;
+  }
+
+  .thumbnails img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+
+  .desc {
+    font-size: 0.95rem;
+  }
+
+  .quantity input {
+    width: 60px;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnails img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+.btn:disabled,
+.btn.disabled {
+  background-color: #fb8ccc;
+  color: #f8f7f7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.details-container {
+  justify-content: center; 
+  align-items: flex-start;
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  float: right;
+  margin-top: -2.5rem;
+  font-size: 1.8rem;
+  color: #ccc;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.fav-btn.active {
+  color: #e91e63;
+}
+
+.fav-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  color: #e91e63;
+}
+
+.fav-btn:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1.2rem; 
+  box-sizing: border-box;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.gallery, .info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.info {
+  padding: 0 1rem; 
+}
+
+@media (max-width: 768px) {
+  .details-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.2rem; 
+  }
+
+  .gallery, .info {
+    width: 100%;
+    max-width: 95%;
+  }
+
+  .desc, .price, .stock, .rating {
+    padding: 0 0.5rem;
+    text-align: justify; 
+  }
+
+  .main-image img {
+    border-radius: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .details-container {
+    padding: 0.8rem;
+  }
+
+  .desc {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+}

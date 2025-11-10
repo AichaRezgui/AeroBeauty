@@ -1,0 +1,78 @@
+.profile-container {
+  background: #fff5f8;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+h3 {
+  color: #e91e63;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.profile-display p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.btn-edit, .btn-save, .btn-cancel {
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-edit:hover, .btn-save:hover {
+  background: #f48fb1;
+}
+
+.btn-cancel {
+  background: #ccc;
+  color: #333;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #e91e63;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 1.2rem;
+  }
+}

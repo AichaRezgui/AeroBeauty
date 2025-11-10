@@ -1,0 +1,20 @@
+<div class="favorites-container">
+  <h3>❤️ Mes favoris</h3>
+
+  <div *ngIf="loading" class="loading">Chargement...</div>
+
+  <div *ngIf="!loading && products.length === 0" class="no-favs">
+    <p>Aucun favori enregistré.</p>
+  </div>
+
+  <div class="fav-grid" *ngIf="products.length > 0">
+    <div class="fav-card" *ngFor="let p of products">
+      <div class="fav-heart" (click)="toggleFavorite(p.id)">❤️</div>
+      <img [src]="p.images[0]" [alt]="p.name" class="fav-img" />
+      <div class="fav-info">
+        <h4>{{ p.name }}</h4>
+        <p class="price">{{ p.price | currency:'TND':'symbol' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
