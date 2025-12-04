@@ -116,7 +116,7 @@ applyFilters(filters: any = {}) {
  addToCart(event: Event, product: Product) {
   event.stopPropagation();
   this.cartService.addToCart(product, 1);
-  this.showToast(`${product.name} a été ajouté au panier 🛒`);
+  this.showToast(`${product.name} a été ajouté au panier `);
 }
 
 showToast(message: string) {

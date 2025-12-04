@@ -1,44 +1,40 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user';
 import { User } from '../../models/user';
 import { Observable, map, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private currentUser: User | null = null;
-  private readonly STORAGE_KEY = 'currentUser';
-
-  constructor(private userService: UserService) {
-    const savedUser = localStorage.getItem(this.STORAGE_KEY);
-    if (savedUser) this.currentUser = JSON.parse(savedUser);
+  private currentUser: Observable<User> | null = null;
+  private userId : number | null = null;
+  private baseUrl = 'http://localhost:9090/auth';
+  constructor(private userService: UserService,private http: HttpClient) {
   }
 
-  login(email: string, password: string): Observable<User | null> {
-    return this.userService.getAll().pipe(
-      map(users => users.find(u => u.email === email && u.password === password) || null),
-      tap(user => {
-        if (user) {
-          this.currentUser = user;
-          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
-        }
-      })
-    );
+  register1(userData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/signup`, userData);
   }
-
-  register(user: User): Observable<User> {
-    return this.userService.create(user);
+  
+  login1(credentials: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, credentials);
   }
 
   logout() {
     this.currentUser = null;
-    localStorage.removeItem(this.STORAGE_KEY);
+    localStorage.removeItem('id');
+     localStorage.removeItem('token');
   }
 
-  getCurrentUser(): User | null {
+  getCurrentUser(): Observable<User>{
+    this.userId =Number(localStorage.getItem('id'));
+    this.currentUser = this.userService.getById(this.userId);
     return this.currentUser;
   }
 
   isLoggedIn(): boolean {
-    return !!this.currentUser;
+    if(localStorage.getItem('id')){
+      return true;
+    }else return false;
   }
 }

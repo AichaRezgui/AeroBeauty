@@ -22,7 +22,7 @@ export class HomeFeaturedProductsComponent implements OnInit {
   }
 
   private loadFeaturedProducts(): void {
-    this.productService.getFeatured(8).subscribe({
+    this.productService.getFeatured().subscribe({
       next: (data) => {
         this.featuredProducts = data;
         this.isLoading = false;

@@ -18,25 +18,27 @@ export class OrdersComponent implements OnChanges {
 
   constructor(private productService: ProductService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['orders'] && this.orders?.length) {
-      this.loadProducts();
-    }
+ngOnChanges(changes: SimpleChanges): void {
+  if (changes['orders'] && this.orders?.length) {
+    this.loadProducts();
   }
+}
 
-  private loadProducts(): void {
-    const productIds = this.orders.flatMap(o => o.items.map(i => i.productId));
-    const uniqueIds = [...new Set(productIds)];
+private loadProducts(): void {
+  console.log(this.orders)
+  const productIds = this.orders.flatMap(o => o.items.map(i => i.productId));
+  const uniqueIds = [...new Set(productIds)];
 
-    if (uniqueIds.length) {
-      forkJoin(uniqueIds.map(id => this.productService.getById(id))).subscribe(products => {
-        this.productsMap = {}; 
-        products.forEach(p => (this.productsMap[p.id] = p));
-      });
-    }
+  if (uniqueIds.length) {
+    forkJoin(uniqueIds.map(id => this.productService.getById(id))).subscribe(products => {
+      this.productsMap = {};
+      products.forEach(p => (this.productsMap[p.id] = p));
+    });
   }
+}
 
-  getProductName(id: number): string {
-    return this.productsMap[id]?.name || `Produit #${id}`;
-  }
+getProductName(id: number): string {
+  return this.productsMap[id]?.name || `Produit #${id}`;
+}
+
 }

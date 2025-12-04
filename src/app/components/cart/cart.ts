@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
   checkout() {
     //alert('Procéder au paiement (simulation)');
     //this.cartService.clearCart();
-    if(localStorage.getItem('currentUser')){
+    if(localStorage.getItem('id')){
       this.route.navigate(['/checkout']);
     }else {
       this.route.navigate(['/login']);

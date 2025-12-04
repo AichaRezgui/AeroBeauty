@@ -644,7 +644,10 @@
         "2",
         "7",
         "8",
-        "17"
+        "17",
+        "6",
+        "1",
+        "5"
       ],
       "orders": []
     }
@@ -808,6 +811,37 @@
       },
       "status": "En cours",
       "date": "2025-11-10"
+    },
+    {
+      "id": "1762867950136",
+      "userId": "5",
+      "items": [
+        {
+          "productId": "2",
+          "quantity": 1,
+          "price": 50
+        },
+        {
+          "productId": "3",
+          "quantity": 1,
+          "price": 90.99
+        },
+        {
+          "productId": "5",
+          "quantity": 1,
+          "price": 70.99
+        }
+      ],
+      "total": 211.98000000000002,
+      "shippingAddress": {
+        "street": "10203 ouardia 2",
+        "city": "Tunis",
+        "zip": "0000",
+        "country": "Tunisie",
+        "phone": "50123869"
+      },
+      "status": "En cours",
+      "date": "2025-11-11"
     }
   ],
   "sliders": [

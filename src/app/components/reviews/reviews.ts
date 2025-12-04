@@ -25,6 +25,7 @@ export class ReviewsComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.userService.getAll().subscribe(users => {
       users.forEach(u => (this.usersMap[u.id] = u));
+      
     });
 
     if (this.productId) {
@@ -43,6 +44,7 @@ export class ReviewsComponent implements OnInit, OnChanges {
       next: data => (this.reviews = data),
       error: () => console.error('Erreur lors du chargement des avis')
     });
+    
   }
 
   get averageRating(): number {

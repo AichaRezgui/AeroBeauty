@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
-import { UserService } from '../../core/services/user';
-import { User } from '../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -13,72 +11,28 @@ import { User } from '../../models/user';
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })
-export class RegisterComponent implements OnInit {
-  user: User = {
-    id: 0,
+export class RegisterComponent {
+
+  user = {
     firstName: '',
     lastName: '',
     email: '',
-    password: '',
+    motDePasse: '', 
     addresses: [
-      { id: 0, street: '', city: '', zip: '', country: '' }
+      {
+        street: '',
+        city: '',
+        zip: '',
+        country: ''
+      }
     ],
-    favorites: [],
-    orders: []
+    favorites: [] 
   };
 
-  confirmPassword = '';
-  error = '';
+  confirmPassword: string = '';
+  error: string = '';
 
-  constructor(
-    private auth: AuthService,
-    private userService: UserService,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.userService.getAll().subscribe({
-      next: (users) => {
-        const maxId = users.length > 0 ? Math.max(...users.map(u => Number(u.id))) : 0;
-        this.user.id = maxId + 1;
-        this.user.addresses[0].id = maxId + 1;
-      },
-      error: (err) => console.error('Erreur lors du chargement des utilisateurs :', err)
-    });
-  }
-
-  onSubmit() {
-    const passwordError = this.validatePassword(this.user.password);
-    if (passwordError) {
-      this.error = passwordError;
-      return;
-    }
-
-    if (this.user.password !== this.confirmPassword) {
-      this.error = 'Les mots de passe ne correspondent pas.';
-      return;
-    }
-
-    const userToSave = {
-      ...this.user,
-      id: String(this.user.id),
-      addresses: this.user.addresses.map(addr => ({
-        ...addr,
-        id: String(addr.id)
-      }))
-    };
-
-    this.auth.register(userToSave as any).subscribe({
-      next: () => {
-        alert('Inscription réussie ! Vous pouvez vous connecter.');
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error(err);
-        this.error = "Une erreur est survenue lors de l'inscription.";
-      }
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) { }
 
   togglePassword(fieldId: string) {
     const input = document.getElementById(fieldId) as HTMLInputElement;
@@ -100,7 +54,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validatePassword(password: string): string {
-    if (password.length < 6) return 'Le mot de passe doit comporter au moins 6 caractères.';
+    if (password.length < 8) return 'Le mot de passe doit comporter au moins 8 caractères.';
     if (!/[A-Z]/.test(password)) return 'Le mot de passe doit contenir au moins une lettre majuscule.';
     if (!/[a-z]/.test(password)) return 'Le mot de passe doit contenir au moins une lettre minuscule.';
     if (!/[0-9]/.test(password)) return 'Le mot de passe doit contenir au moins un chiffre.';
@@ -109,7 +63,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get passwordChecks() {
-    const pwd = this.user.password || '';
+    const pwd = this.user.motDePasse || '';
     return {
       hasUpper: /[A-Z]/.test(pwd),
       hasLower: /[a-z]/.test(pwd),
@@ -117,5 +71,39 @@ export class RegisterComponent implements OnInit {
       hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(pwd),
       hasLength: pwd.length >= 8
     };
+  }
+
+  onSubmit() {
+    this.error = '';
+
+    if (this.user.motDePasse !== this.confirmPassword) {
+      this.error = "Les mots de passe ne correspondent pas.";
+      return;
+    }
+
+    const pwdError = this.validatePassword(this.user.motDePasse);
+    if (pwdError) {
+      this.error = pwdError;
+      return;
+    }
+
+    this.authService.register1(this.user).subscribe({
+
+      next: (response) => {
+        console.log("Inscription réussie :", response);
+        alert("Compte créé avec succès !");
+        this.router.navigate(['/login']);
+      },
+
+      error: (err) => {
+        console.error("Erreur backend :", err);
+
+        if (err.status === 409) {
+          this.error = "Cet email est déjà utilisé.";
+        } else {
+          this.error = "Une erreur est survenue. Réessayez.";
+        }
+      }
+    });
   }
 }

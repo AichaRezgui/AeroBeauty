@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { ApiService } from './api';
 import { Cart, CartItem } from '../../models/cart';
 import { Product } from '../../models/product';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
-  private path = 'cart';
   private cart$ = new BehaviorSubject<Cart | null>(null);
 
-  constructor(private api: ApiService) {
+  constructor() {
     this.loadCartFromStorage();
   }
 
@@ -75,11 +73,11 @@ export class CartService {
     this.saveCartToStorage(cart);
   }
 
-  saveCartToServer(): Observable<Cart> {
+  /*saveCartToServer(): Observable<Cart> {
     const cart = this.getCurrentCart();
     if (!cart) throw new Error('Aucun panier à sauvegarder');
     return this.api.put<Cart>(this.path, cart.id, cart).pipe(
       tap(saved => this.saveCartToStorage(saved))
     );
-  }
+  }*/
 }

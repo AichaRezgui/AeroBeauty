@@ -5,22 +5,26 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  private path = 'products';
+  private path = 'api/products';
   constructor(private api : ApiService) {}
 
   getAll(): Observable<Product[]> {
     return this.api.get<Product[]>(this.path);
   }
 
-  getFeatured(limit = 8) {
-    return this.api.get<Product[]>(`${this.path}?isFeatured=true&_limit=${limit}`);
+  getFeatured(): Observable<Product[]> {
+    return this.api.get<Product[]>(`${this.path}/featured`);
   }
 
-  getByCategory(categoryId: number) {
-    return this.api.get<Product[]>(`${this.path}?categoryId=${categoryId}`);
+  getNew(): Observable<Product[]> {
+    return this.api.get<Product[]>(`${this.path}/new`);
   }
 
-  getById(id: number) {
-    return this.api.getById<Product>(this.path, id);
+  getByCategory(categoryId: number): Observable<Product[]> {
+    return this.api.get<Product[]>(`${this.path}/category/${categoryId}`);
+  }
+
+  getById(id: number): Observable<Product> {
+    return this.api.get<Product>(`${this.path}/${id}`);
   }
 }

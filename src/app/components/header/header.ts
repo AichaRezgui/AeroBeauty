@@ -12,7 +12,7 @@ import { AuthService } from '../../core/services/auth';
 })
 export class HeaderComponent {
   constructor(public auth: AuthService, private router: Router
-  ) {}
+  ) { }
 
   goToLogin() {
     this.router.navigate(['/login']);

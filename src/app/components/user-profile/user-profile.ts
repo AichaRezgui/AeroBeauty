@@ -36,8 +36,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
     if (!currentUser) return;
-
-    this.userService.getById(currentUser.id).subscribe(user => {
+    this.userService.getById(Number(localStorage.getItem('id'))).subscribe(user => {
       this.user = user;
       this.loadOrders(user.id);
     });

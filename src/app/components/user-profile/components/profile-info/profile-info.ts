@@ -24,25 +24,31 @@ export class ProfileInfoComponent {
 
   constructor(private userService: UserService) {}
 
-  saveProfile() {
-    if (this.showPasswordFields) {
-      if (this.passwordData.currentPassword !== this.user.password) {
-        alert(' L’ancien mot de passe est incorrect.');
-        return;
-      }
-      if (this.passwordData.newPassword !== this.passwordData.confirmPassword) {
-        alert(' Les nouveaux mots de passe ne correspondent pas.');
-        return;
-      }
+ saveProfile() {
+  const updateData: any = {
+    firstName: this.user.firstName,
+    lastName: this.user.lastName,
+    email: this.user.email
+  };
 
-      this.user.password = this.passwordData.newPassword;
-    }
+  if (this.showPasswordFields) {
+    updateData.currentPassword = this.passwordData.currentPassword;
+    updateData.newPassword = this.passwordData.newPassword;
+  }
 
-    this.userService.update(this.user.id, this.user).subscribe(() => {
-      alert('Profil mis à jour avec succès ✅');
+  this.userService.update(this.user.id, updateData).subscribe({
+    next: updatedUser => {
+      alert('Profil mis à jour avec succès ');
+      this.user = updatedUser;
       this.editing = false;
       this.showPasswordFields = false;
       this.passwordData = { currentPassword: '', newPassword: '', confirmPassword: '' };
-    });
-  }
+    },
+    error: err => {
+      console.error(err);
+      alert(err.error || 'Erreur lors de la mise à jour du profil');
+    }
+  });
+}
+
 }

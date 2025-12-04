@@ -28,7 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   usersMap: Record<number, User> = {};
   toastMessage: string | null = null;
 
-  currentUser: User | null = null;
+  currentUser: User | null = null; 
   isFavorite = false;
 
   constructor(
@@ -50,7 +50,11 @@ export class ProductDetailsComponent implements OnInit {
       users.forEach(u => (this.usersMap[u.id] = u));
     });
 
-    this.currentUser = this.authService.getCurrentUser();
+    this.authService.getCurrentUser().subscribe(user => {
+      this.currentUser = user;
+
+      if (this.product) this.updateFavoriteStatus();
+    });
   }
 
   private loadData(id: number): void {
@@ -60,6 +64,7 @@ export class ProductDetailsComponent implements OnInit {
       next: data => {
         this.product = data;
         this.selectedImage = data.images[0];
+
         this.updateFavoriteStatus();
       },
       error: () => console.error('Erreur lors du chargement du produit')
@@ -97,8 +102,11 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     this.currentUser.favorites = favorites;
-    this.userService.update(this.currentUser.id, this.currentUser).subscribe();
-    this.isFavorite = favorites.includes(this.product.id);
+
+    this.userService.update(this.currentUser.id, this.currentUser).subscribe({
+      next: () => this.isFavorite = favorites.includes(this.product!.id),
+      error: () => console.error('Erreur lors de la mise à jour des favoris')
+    });
   }
 
   updateFavoriteStatus(): void {

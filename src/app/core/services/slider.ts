@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SliderService {
-  private path = 'sliders';
+  private path = 'api/sliders';
   constructor(private api: ApiService) {}
   getAll(): Observable<Slider[]> {
     return this.api.get<Slider[]>(this.path);

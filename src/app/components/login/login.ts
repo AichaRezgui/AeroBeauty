@@ -12,33 +12,13 @@ import { AuthService } from '../../core/services/auth';
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  email = '';
-  password = '';
-  error = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  email: string = '';
+  password: string = '';
+  error: string = '';
+  isLoading: boolean = false;
 
-  onSubmit() {
-    this.error = '';
-    if (!this.email || !this.password) {
-      this.error = 'Veuillez renseigner l\'email et le mot de passe.';
-      return;
-    }
-
-    this.auth.login(this.email, this.password).subscribe({
-      next: () => {
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        console.error(err);
-        this.error = 'Email ou mot de passe incorrect.';
-      }
-    });
-  }
-
-  goToRegister() {
-    this.router.navigate(['/register']);
-  }
+  constructor(private auth: AuthService, private router: Router) { }
 
   togglePassword(fieldId: string) {
     const input = document.getElementById(fieldId) as HTMLInputElement;
@@ -53,4 +33,46 @@ export class LoginComponent {
       }
     }
   }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+
+  onSubmit() {
+    this.error = '';
+
+    if (!this.email || !this.password) {
+      this.error = "Veuillez renseigner l'email et le mot de passe.";
+      return;
+    }
+
+    this.isLoading = true;
+
+    const credentials = {
+      email: this.email,
+      motDePasse: this.password  
+    };
+
+    this.auth.login1(credentials).subscribe({
+      next: (response: any) => {
+        this.isLoading = false;
+        localStorage.setItem('token', response.jwt);
+        localStorage.setItem('id', response.id);
+
+        console.log('Connexion réussie', response);
+        this.router.navigate(['/']); 
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.error('Erreur login :', err);
+
+        if (err.status === 401 || err.status === 403) {
+          this.error = 'Email ou mot de passe incorrect.';
+        } else {
+          this.error = 'Une erreur est survenue. Réessayez.';
+        }
+      }
+    });
+  }
+
 }

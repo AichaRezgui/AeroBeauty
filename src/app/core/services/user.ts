@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private path = 'users';
+  private path = 'api/users';
 
   constructor(private api: ApiService) {}
 

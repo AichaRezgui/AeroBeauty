@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
-  private path = 'reviews';
+  private path = 'api/reviews';
 
   constructor(private api: ApiService) {}
 
@@ -14,14 +14,15 @@ export class ReviewService {
   }
 
   getByProduct(productId: number): Observable<Review[]> {
-    return this.api.get<Review[]>(`${this.path}?productId=${productId}`);
+    return this.api.get<Review[]>(`${this.path}/product/${productId}`);
   }
 
   getById(id: number): Observable<Review> {
-    return this.api.getById<Review>(this.path, id);
+    return this.api.get<Review>(`${this.path}/${id}`);
   }
 
   addReview(review: Partial<Review>): Observable<Review> {
     return this.api.post<Review>(this.path, review);
   }
+  
 }

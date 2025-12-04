@@ -8,7 +8,7 @@ import { Product } from '../../models/product';
 import { ProductService } from '../../core/services/product';
 import { OrderService } from '../../core/services/order';
 import { AuthService } from '../../core/services/auth';
-import { Order } from '../../models/order';
+import { OrderCreate } from '../../models/order';
 
 @Component({
   selector: 'app-checkout',
@@ -60,61 +60,63 @@ export class CheckoutComponent implements OnInit {
     return this.getSubtotal() + this.getDeliveryFee();
   }
 
-  confirmOrder() {
-    if (!this.cart || this.cart.items.length === 0) {
-      alert('Votre panier est vide.');
-      return;
-    }
-
-    if (this.paymentMethod === 'card' && (!this.card.number || !this.card.expiry || !this.card.cvc)) {
-      alert('Veuillez remplir les informations de carte.');
-      return;
-    }
-
-    const currentUser = this.auth.getCurrentUser();
-    if (!currentUser) {
-      alert('Vous devez être connecté pour passer une commande.');
-      return;
-    }
-
-    const newOrder: Order = {
-      id: Date.now(),
-      userId: currentUser.id,
-      items: this.cart.items.map(i => ({
-        productId: i.productId,
-        quantity: i.quantity,
-        price: i.price
-      })),
-      total: this.getTotal(),
-      shippingAddress: {
-        street: this.address.street || 'Non spécifiée',
-        city: this.address.city || 'Non spécifiée',
-        zip: this.address.zip || '0000',
-        country: this.address.country,
-        phone: this.address.phone || 'Non spécifié'
-      },
-      status: 'En cours',
-      date: new Date().toISOString().split('T')[0]
-    };
-
-    const orderToSave = {
-      ...newOrder,
-      id: String(newOrder.id),
-      userId: String(newOrder.userId)
-    };
-
-    this.orderService.create(orderToSave as any).subscribe({
-      next: () => {
-        alert(' Commande enregistrée avec succès ! Merci pour votre confiance 💖');
-        this.cartService.clearCart();
-        this.router.navigate(['/confirmation']);
-      },
-      error: (err) => {
-        console.error(err);
-        alert(' Erreur lors de la création de la commande.');
-      }
-    });
+confirmOrder() {
+  if (!this.cart || this.cart.items.length === 0) {
+    alert('Votre panier est vide.');
+    return;
   }
+
+  if (this.paymentMethod === 'card' && (!this.card.number || !this.card.expiry || !this.card.cvc)) {
+    alert('Veuillez remplir les informations de carte.');
+    return;
+  }
+
+  const currentUserId = Number(localStorage.getItem('id'));
+  if (!currentUserId) {
+    alert('Vous devez être connecté pour passer une commande.');
+    return;
+  }
+  
+  const items = this.cart.items.map(i => ({
+    product: { id: i.productId },
+    quantity: i.quantity,
+    price: i.price
+  }));
+
+  const newOrder: OrderCreate = {
+  user: { id: currentUserId },
+  items: this.cart.items.map(i => ({
+    product: { id: i.productId },
+    quantity: i.quantity,
+    price: i.price
+  })),
+  total: this.getTotal(),
+  shippingAddress: {
+    street: this.address.street || 'Non spécifiée',
+    city: this.address.city || 'Non spécifiée',
+    zip: this.address.zip || '0000',
+    country: this.address.country,
+    phone: this.address.phone || 'Non spécifié'
+  },
+  status: 'En cours',
+  date: new Date().toISOString().split('T')[0]
+};
+
+  console.log('Order envoyé au backend:', newOrder);
+
+  this.orderService.create(newOrder).subscribe({
+    next: () => {
+      alert('Commande enregistrée avec succès ! Merci pour votre confiance ');
+      this.cartService.clearCart();
+      this.router.navigate(['/confirmation']);
+    },
+    error: err => {
+      console.error(err);
+      alert('Erreur lors de la création de la commande.');
+    }
+  });
+}
+
 
   loadProductNames(ids: number[]) {
     ids.forEach(id => {

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService {
-  private path = 'categories';
+  private path = 'api/categories';
   constructor(private api: ApiService) {}
   getAll(): Observable<Category[]> {
     return this.api.get<Category[]>(this.path);
