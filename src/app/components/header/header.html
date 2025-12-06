@@ -18,21 +18,30 @@
 
   <div class="nav-icons">
     <span class="material-icons" routerLink="/cart" style="cursor: pointer;">shopping_cart</span>
-    <span class="material-icons" routerLink="/profil" *ngIf="auth.isLoggedIn()">account_circle</span>
-    <span 
-      class="material-icons" 
-      style="cursor: pointer;"
-      *ngIf="!auth.isLoggedIn()"
-      (click)="goToLogin()"
-      title="Se connecter">login</span>
+  <span 
+  class="material-icons" 
+  routerLink="/profil" 
+  *ngIf="isLoggedIn$ | async"
+>
+  account_circle
+</span>
 
-    <span 
-      class="material-icons" 
-      style="cursor: pointer;"
-      *ngIf="auth.isLoggedIn()"
-      (click)="logout()"
-      title="Se déconnecter"
-    >logout</span>
+<span 
+  class="material-icons" 
+  *ngIf="!(isLoggedIn$ | async)"
+  (click)="goToLogin()"
+>
+  login
+</span>
+
+<span 
+  class="material-icons" 
+  *ngIf="isLoggedIn$ | async"
+  (click)="logout()"
+>
+  logout
+</span>
+
 
    
   </div>

@@ -71,49 +71,45 @@ confirmOrder() {
     return;
   }
 
-  const currentUserId = Number(localStorage.getItem('id'));
-  if (!currentUserId) {
-    alert('Vous devez être connecté pour passer une commande.');
-    return;
-  }
-  
-  const items = this.cart.items.map(i => ({
-    product: { id: i.productId },
-    quantity: i.quantity,
-    price: i.price
-  }));
-
-  const newOrder: OrderCreate = {
-  user: { id: currentUserId },
-  items: this.cart.items.map(i => ({
-    product: { id: i.productId },
-    quantity: i.quantity,
-    price: i.price
-  })),
-  total: this.getTotal(),
-  shippingAddress: {
-    street: this.address.street || 'Non spécifiée',
-    city: this.address.city || 'Non spécifiée',
-    zip: this.address.zip || '0000',
-    country: this.address.country,
-    phone: this.address.phone || 'Non spécifié'
-  },
-  status: 'En cours',
-  date: new Date().toISOString().split('T')[0]
-};
-
-  console.log('Order envoyé au backend:', newOrder);
-
-  this.orderService.create(newOrder).subscribe({
-    next: () => {
-      alert('Commande enregistrée avec succès ! Merci pour votre confiance ');
-      this.cartService.clearCart();
-      this.router.navigate(['/confirmation']);
-    },
-    error: err => {
-      console.error(err);
-      alert('Erreur lors de la création de la commande.');
+  this.auth.getCurrentUser().subscribe(user => {
+    if (!user) {
+      alert('Vous devez être connecté pour passer une commande.');
+      this.router.navigate(['/login']);
+      return;
     }
+
+    const currentUserId = user.id; 
+
+    const newOrder: OrderCreate = {
+      user: { id: currentUserId },
+      items: this.cart!.items.map(i => ({
+        product: { id: i.productId },
+        quantity: i.quantity,
+        price: i.price
+      })),
+      total: this.getTotal(),
+      shippingAddress: {
+        street: this.address.street || 'Non spécifiée',
+        city: this.address.city || 'Non spécifiée',
+        zip: this.address.zip || '0000',
+        country: this.address.country,
+        phone: this.address.phone || 'Non spécifié'
+      },
+      status: 'En cours',
+      date: new Date().toISOString().split('T')[0]
+    };
+
+    this.orderService.create(newOrder).subscribe({
+      next: () => {
+        alert('Commande enregistrée avec succès ! Merci pour votre confiance ✅');
+        this.cartService.clearCart();
+        this.router.navigate(['/confirmation']);
+      },
+      error: err => {
+        console.error(err);
+        alert('Erreur lors de la création de la commande.');
+      }
+    });
   });
 }
 

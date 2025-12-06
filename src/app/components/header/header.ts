@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,25 +12,30 @@ import { AuthService } from '../../core/services/auth';
   styleUrls: ['./header.css']
 })
 export class HeaderComponent {
-  constructor(public auth: AuthService, private router: Router
-  ) { }
+
+  isLoggedIn$!: Observable<boolean>;
+
+  menuOpen = false;
+
+  constructor(public auth: AuthService, private router: Router) {
+    this.isLoggedIn$ = this.auth.isLoggedIn();
+  }
 
   goToLogin() {
     this.router.navigate(['/login']);
   }
 
   logout() {
-    this.auth.logout(); 
-    this.router.navigate(['/']); 
+    this.auth.logout().subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
-  menuOpen = false;
 
-toggleMenu() {
-  this.menuOpen = !this.menuOpen;
-  const nav = document.querySelector('.nav-links') as HTMLElement;
-  if(nav) {
-    nav.style.display = this.menuOpen ? 'flex' : 'none';
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    const nav = document.querySelector('.nav-links') as HTMLElement;
+    if (nav) {
+      nav.style.display = this.menuOpen ? 'flex' : 'none';
+    }
   }
-}
-
 }

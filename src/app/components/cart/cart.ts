@@ -6,6 +6,7 @@ import { Cart, CartItem } from '../../models/cart';
 import { Product } from '../../models/product';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +21,7 @@ export class CartComponent implements OnInit {
   deliveryFee = 7;
   errorMessage: string | null = null;
 
-  constructor(private cartService: CartService, private productService: ProductService, private route : Router) {}
+  constructor(private cartService: CartService, private productService: ProductService, private route : Router,  private authService: AuthService ) {}
 
   ngOnInit() {
     this.cartService.getCart().subscribe(cart => {
@@ -67,16 +68,15 @@ export class CartComponent implements OnInit {
     this.cartService.removeItem(productId);
   }
 
-  checkout() {
-    //alert('Procéder au paiement (simulation)');
-    //this.cartService.clearCart();
-    if(localStorage.getItem('id')){
-      this.route.navigate(['/checkout']);
-    }else {
-      this.route.navigate(['/login']);
+checkout() {
+  this.authService.isLoggedIn().subscribe(isLogged => {
+    if (isLogged) {
+      this.route.navigate(['/checkout']);   
+    } else {
+      this.route.navigate(['/login']);      
     }
-    
-  }
+  });
+}
 
   getSubtotalAll(): number {
     if (!this.cart) return 0;

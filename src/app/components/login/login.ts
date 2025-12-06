@@ -56,8 +56,6 @@ export class LoginComponent {
     this.auth.login1(credentials).subscribe({
       next: (response: any) => {
         this.isLoading = false;
-        localStorage.setItem('token', response.jwt);
-        localStorage.setItem('id', response.id);
 
         console.log('Connexion réussie', response);
         this.router.navigate(['/']); 

@@ -52,7 +52,6 @@ export class ProductDetailsComponent implements OnInit {
 
     this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
-
       if (this.product) this.updateFavoriteStatus();
     });
   }

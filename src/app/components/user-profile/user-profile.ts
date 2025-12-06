@@ -34,12 +34,14 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const currentUser = this.authService.getCurrentUser();
-    if (!currentUser) return;
-    this.userService.getById(Number(localStorage.getItem('id'))).subscribe(user => {
-      this.user = user;
-      this.loadOrders(user.id);
-    });
+     this.authService.getCurrentUser().subscribe(user => {
+    if (!user) return; // utilisateur non connecté, on ne charge rien
+
+    this.user = user; // on stocke l'utilisateur courant
+
+    // Charger les commandes avec l'ID de l'utilisateur récupéré
+    this.loadOrders(user.id);
+  });
   }
 
   loadOrders(userId: number): void {

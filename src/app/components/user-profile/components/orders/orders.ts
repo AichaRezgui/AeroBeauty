@@ -25,7 +25,6 @@ ngOnChanges(changes: SimpleChanges): void {
 }
 
 private loadProducts(): void {
-  console.log(this.orders)
   const productIds = this.orders.flatMap(o => o.items.map(i => i.productId));
   const uniqueIds = [...new Set(productIds)];
 

@@ -90,7 +90,6 @@ export class RegisterComponent {
     this.authService.register1(this.user).subscribe({
 
       next: (response) => {
-        console.log("Inscription réussie :", response);
         alert("Compte créé avec succès !");
         this.router.navigate(['/login']);
       },
